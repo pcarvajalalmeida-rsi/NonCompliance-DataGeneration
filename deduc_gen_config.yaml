@@ -1,0 +1,32 @@
+naics: 81
+size: s
+gen_sample_size: 1000
+
+deduc_prob_usage:
+    deduc_x: 0.9
+    deduc_16: 0.001369
+    deduc_17: 0.017539
+    
+distribution:
+    deduc_x: uniform
+    deduc_16: uniform
+    deduc_17: uniform
+    
+parameters:
+    deduc_x: 
+        low: 0
+        high: 1
+    deduc_16: 
+        low: 0
+        high: 1
+    deduc_17:
+        low: 0
+        high: 1
+
+# parameters for:
+# 'normal': 'mean', 'std'
+# 'beta':  'a', 'b'
+# 'uniform': 'low', 'high'
+# 'binomial': 'n', 'p'
+
+    
