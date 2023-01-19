@@ -1,19 +1,24 @@
 naics: 81
 size: s
-gen_sample_size: 1000
 
-deduc_prob_usage:
-    deduc_x: 0.9
+# features_p is the probability of the feature to be different than 0
+features_p:
+    deduc_x:  0.9
+    deduc_y:  0.75
     deduc_16: 0.001369
     deduc_17: 0.017539
     
 distribution:
-    deduc_x: uniform
+    deduc_x:  uniform
+    deduc_y:  uniform
     deduc_16: uniform
     deduc_17: uniform
     
 parameters:
     deduc_x: 
+        low: 0
+        high: 1
+    deduc_y: 
         low: 0
         high: 1
     deduc_16: 
