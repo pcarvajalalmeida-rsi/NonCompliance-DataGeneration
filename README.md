@@ -1,2 +1,2 @@
 # NonCompliance-DataGeneration
-Simulations of data for non-complaince
+Simulations of data for non-compliance
