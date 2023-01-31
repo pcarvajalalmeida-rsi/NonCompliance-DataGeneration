@@ -1,0 +1,12 @@
+income:
+# Income MVP
+    naics: 81
+    size: s
+    always_non_neg: True
+    period: Q
+    last_date: 2022-12-31
+
+    distribution: normal
+    parameters:
+        mean: 250000
+        std: 100000

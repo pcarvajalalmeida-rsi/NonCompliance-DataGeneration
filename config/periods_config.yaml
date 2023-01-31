@@ -1,0 +1,8 @@
+periods:
+    last_date: 2022-12-28
+    max_nperiods_back: 40
+    freq: Q
+    prob_inactive: 0.1
+    src_file: Resources/81n_per_loc_and_bus.csv
+    outcomes_col: n_per_each_loc_bus_id
+    
