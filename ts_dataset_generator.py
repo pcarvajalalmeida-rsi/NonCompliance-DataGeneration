@@ -148,6 +148,19 @@ class gen_rand_periods():
 
 
 def generate_random_numbers(distribution, params, n, seed):
+    """
+    This function generates random numbers of different distributions.
+    
+    Args:
+    distribution: str. Possible: 'normal', 'beta', 'uniform', 'binomial'
+    params: a dictionary with the relevant parameters for each distribition. For example:
+              for a beta:    {'a': 8, 'b': 8},
+              for a uniform: {'low': 0, 'high': 1},
+              for a normal:  {'mean': 250000, 'std': 100000}
+              for a binomial:{'n':5,'p': 0.6}
+    
+    """
+    
     rng = np.random.default_rng(seed = seed)
     if distribution == 'normal':
         return rng.normal(params['mean'], params['std'], n)
@@ -234,7 +247,7 @@ class gen_random_proportions():
         
     def get_yml(self):
         """
-        This class read the configutation from the yml class
+        This class read the configutation from the yml class associated to the object
         """
         self.features_p = self.yml['features_p']
         self.distribution = self.yml['distribution']
@@ -386,34 +399,56 @@ class ObjectGenerator(object):
 
 
 def gen_ts_record(yml, seed=1, debug=False):
+    """
+    This function generates a record comprised by a concatenation of objects and possible transformation among them.
+    The steps are:
+    1. Generation of columns from objects
+    1.1. Index using the `gen_rand_periods()` class. This step defines the random length of the record.
+    1.2. Ids   using the `generate_random_id()` function.
+    1.3. Income using the `gen_money_ts()` class
+    1.4. Distribution of the income in tax paid, net income and aggregate deductions, using the `gen_random_proportions()` class. This distribution for each row of the record.
+    1.5. Distribution of deductions in every period (row) of the record
+    
+    2. Tranformation: converting proportions to money and re-grouping/drops
+    2.1. Calculate tax_paid, aggregate deductions as amplyfying the proportion by the income
+    2.2. Calculate deductions as amplyfying the proportions by the income
+    
+    
+    3. Setting up the index as the element in 1.1 for all the dataframe record
+    
+    
+    Args:
+    yml: a yaml dictionary containing the key parameters for the objects: 'periods', 'income', and 'deducs'. For the required parameters, see the method get_yml() associated to each object
+    """
+    
 
     # GENERATION OF INDEX AND OBJECTS
     # This can be made using a loop, but I prefer to see each of the components
    
-    # Index periods
+    # 1. Index periods
     periods = ObjectGenerator(yml=yml.get('periods'), class_name='gen_rand_periods', seed=seed)
     periods_index = periods.populate_object()
     n = len(periods_index)
     if debug: print(n, periods_index)
 
-    # Business ID of id_digits
+    # 2. Business ID of id_digits
     business_id = generate_random_id(n=8, seed=seed)
     id_df = pd.DataFrame([business_id]*n, columns=['business_id'])
     if debug: display(id_df)
 
-    #Income - money
+    # 3. Income - money
     income = ObjectGenerator(yml=yml.get('income'), class_name='gen_money_ts', n=n, seed=seed)
     income_df = income.populate_object()
     if debug: display(income_df)
 
-    # Decomposition of the income: effective tax rate + aggregate deductions + net income
+    # 4. Distribution of the income: effective tax rate + aggregate deductions + net income
     efftax_aggdeduc_netinc = ObjectGenerator(yml=yml.get('efftax_aggdeduc_netinc'), 
                                              class_name='gen_random_proportions', 
                                              n=n, seed=seed)
     efftax_aggdeduc_netinc_df = efftax_aggdeduc_netinc.populate_object()
     if debug: display(efftax_aggdeduc_netinc_df)
 
-    # Decomposition of deductions
+    # 5. Distribution of deductions
     deducs = ObjectGenerator(yml=yml.get('deducs'), 
                              class_name='gen_random_proportions', 
                              n=n, seed=seed
@@ -421,22 +456,24 @@ def gen_ts_record(yml, seed=1, debug=False):
     deducs_df = deducs.populate_object()
     if debug: display(deducs_df)
 
-    #TRANSFORMATIONS FROM THE RAW OBJECTS TO THE FINAL TIME SERIES OBJECT
+    # 2. TRANSFORMATIONS FROM THE RAW OBJECTS TO THE FINAL TIME SERIES OBJECT
     # amplified proportions to money
-    # 1. tax_paid, aggregate deductions
+    # 2.1. tax_paid, aggregate deductions: from proportions to money
     efftax_aggdeduc_netinc_df = income_df.values * efftax_aggdeduc_netinc_df
-    efftax_aggdeduc_netinc_df.drop(columns=['net_income'], inplace=True)
+    efftax_aggdeduc_df = efftax_aggdeduc_netinc_df.drop(columns=['net_income'])
+    mapper = {'effect_tax_rate': 'tax_paid'}
+    taxpaid_aggdeduc_df = efftax_aggdeduc_df.rename(columns=mapper)
 
-    #2.deductions 
-    deducs_df = efftax_aggdeduc_netinc_df[['agg_deduc']].values * deducs_df
+    # 2.2 Deductions from proportion to money
+    deducs_df = taxpaid_aggdeduc_df[['agg_deduc']].values * deducs_df
     record_df = pd.concat([id_df,income_df, 
-                           efftax_aggdeduc_netinc_df, 
+                           taxpaid_aggdeduc_df, 
                            deducs_df], 
                           axis=1
     )
     record_df = round(record_df,2)
 
-    #3. adding index
+    #3. Setting up the index
     # Adding period index
     record_df.index = periods_index
     record_df.sort_index(ascending=False, inplace=True)
@@ -454,17 +491,18 @@ class gen_ts_dataset():
 
     seed: int. A initial seed for the random state of the generation
     """
-    def __init__(self, n_samples=50, seed=1, debug=False, export_csv=True):
+    def __init__(self, yml, n_samples=50, seed=1, debug=False, export_csv=True):
         self.n_samples = n_samples
         self.seed = seed
         self.debug=debug
         self.export_csv=export_csv
+        self.yml = yml
        
     def get_dataset(self):
         initial=1
         for k in range(0,self.n_samples):
             if self.debug: print('record', k, 'seed:', self.seed)
-            new_record = gen_ts_record(yml, seed=self.seed, debug=self.debug)
+            new_record = gen_ts_record(yml=self.yml, seed=self.seed, debug=self.debug)
             if initial:
                 self.dataset_df = new_record
                 initial=0
@@ -478,7 +516,7 @@ class gen_ts_dataset():
 
 
 
-dataset_df = gen_ts_dataset(n_samples=100, seed=1, debug=False, export_csv=True)
+dataset_df = gen_ts_dataset(yml=yml, n_samples=100, seed=1, debug=False, export_csv=True)
 dataset_df = dataset_df.get_dataset()
 dataset_df
 

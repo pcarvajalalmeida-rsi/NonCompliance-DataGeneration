@@ -1,6 +1,7 @@
 from ts_dataset_generator import (
     generate_random_id, gen_rand_periods,
-    gen_random_proportions, normalize_rows
+    gen_random_proportions, normalize_rows,
+    ObjectGenerator, gen_ts_record, gen_ts_dataset
 )
         
 import pytest
@@ -273,27 +274,42 @@ def test_normalize_rows():
 
 
  ######################################################################
- #  TESTING ONE TIME SERIES GENERATION - gen_ts_records   OBJECT #
+ #  TESTING ONE TIME SERIES RECORD GENERATION - gen_ts_records   OBJECT #
  ######################################################################
+def test_gen_ts_record():
+    
+    record_df = gen_ts_record(yml)
+    assert isinstance(record_df, pd.DataFrame), f"Expected pd.DataFrame, but got {type(record_df)}"
+    assert len(record_df.columns) == 8, f"Expected 8 columns, but got {len(record_df.columns)}"
+    assert (record_df >= 0).all().all(), "Expected all values to be non-negative"
+    
+    # test that the output DataFrame has the correct columns
+    assert (record_df.columns.to_list() == ['business_id', 'income', 'tax_paid', 'agg_deduc', 'deduc_1', 'deduc_2', 'deduc_16','deduc_17'])
+    
+    # test that the output DataFrame has the correct index frequency
+    assert record_df.index.freq == 'Q', f"Expected frequency to be 'Q', but got: {record_df.index.freq}"
 
+    #@TODO: add more cases: calculations (matricial operations - non random)
 
  ######################################################################
  #  TESTING TIME SERIES DATASET GENERATION - gen_ts_dataset   OBJECT #
  ######################################################################
+def test_gen_ts_dataset():
+    dataset_df = gen_ts_dataset(yml=yml, n_samples=5, seed=1, export_csv=True).get_dataset()
+    
+    # count 5 distinct business ids
+    assert len(dataset_df['business_id'].unique())==5
+    
+    # type is a dataframe
+    assert isinstance(dataset_df, pd.DataFrame), f"Expected pd.DataFrame, but got {type(dataset_df)}"
+    
+    # columns - contents and numbers
+    assert (dataset_df.columns.to_list() == ['business_id', 'income', 'tax_paid', 'agg_deduc', 'deduc_1', 'deduc_2', 'deduc_16','deduc_17'])
+    assert len(dataset_df.columns) == 8, f"Expected 8 columns, but got {len(dataset_df.columns)}"
+    
+    
+    
 
-    
-# def test_generate_ts_record():
-#     # call the function
-#     record_df = generate_ts_record(yml, seed=1, debug=False)
-    
-#     # test that the output is a DataFrame
-#     assert isinstance(record_df, pd.DataFrame)
-    
-#     # test that the output DataFrame has the correct columns
-#     assert set(record_df.columns) == {'business_id', 'income', 'tax_paid', 'effect_tax_rate', 'agg_deduc', 'deduc_1', 'deduc_2', 'deduc_16','deduc_17'}
-    
-#     # test that the output DataFrame has the correct number of rows
-#     # assert len(record_df) == 5
     
 #     # test that the output DataFrame has the correct index frequency
 #     assert record_df.index.freq == 'Q'
