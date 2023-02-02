@@ -1,5 +1,6 @@
 from ts_dataset_generator import (
-    generate_ts_record, generate_random_id, gen_rand_periods
+    generate_random_id, gen_rand_periods,
+    gen_random_proportions, normalize_rows
 )
         
 import pytest
@@ -20,40 +21,40 @@ yml = {
        'outcomes_col': 'n_per_each_loc_bus_id'
    },
    'efftax_aggdeduc_netinc':{
-     'naics': 81,
-     'size': 's',
-     'include_agg_deduc': False,
-     'normalized': True,
-     'features_p': {'effect_tax_rate': 1, 'agg_deduc': 1, 'net_income': 1},
-     'distribution': {'effect_tax_rate': 'normal',
+      'naics': 81,
+      'size': 's',
+      'include_agg': False,
+      'normalized': True,
+      'features_p': {'effect_tax_rate': 1, 'agg_deduc': 1, 'net_income': 1},
+      'distribution': {'effect_tax_rate': 'normal',
                       'agg_deduc': 'beta',
                       'net_income': 'normal'
                     },
-     'parameters': {
+      'parameters': {
         'effect_tax_rate': {'mean': 0.15, 'std': 0.1},
         'agg_deduc': {'a': 2, 'b': 6},
         'net_income': {'mean': 0.67, 'std': 0.05}
                    },
-     'global_always_non_neg': False,
-     'always_non_neg': {
+      'global_always_non_neg': False,
+      'always_non_neg': {
           'net_income': False,
           'effect_tax_rate': True,
           'agg_deduc': True}
    },  
     
    'income': {
-    'naics': 81,
-     'size': 's',
-     'always_non_neg': True,
-     'period': 'Q',
-     'last_date': datetime.date(2022, 12, 31),
-     'distribution': 'normal',
-     'parameters': {'mean': 250000, 'std': 100000}
+      'naics': 81,
+      'size': 's',
+      'always_non_neg': True,
+      'period': 'Q',
+      'last_date': datetime.date(2022, 12, 31),
+      'distribution': 'normal',
+      'parameters': {'mean': 250000, 'std': 100000}
    },
     'deducs':{
         'naics': 81,
         'size': 's',
-        'include_agg_deduc': False,
+        'include_agg': False,
         'normalized': True,
         'global_always_non_neg': True,
         'features_p': {
@@ -76,6 +77,8 @@ yml = {
                   }
         }
 }
+
+
 
 seed = 1
 rng  = np.random.default_rng(seed=seed)
@@ -179,16 +182,90 @@ def test_get_sample():
  ##############################################################
  #  TESTING PERIOD GENERATION - gen_random_proportions OBJECT #
  ##############################################################
+def test_gen_random_proportions():
+        # INIT METHOD - DEFAULT VALUES with YAML fiile
+    obj = gen_random_proportions(yml['deducs'])
+
+    assert obj.yml == yml['deducs']
+    assert obj.features_p == None
+    assert obj.distribution == None
+    assert obj.parameters == None
+    assert obj.n == 40
+    assert obj.seed == 5
+    assert obj.normalized == True
+    assert obj.export_csv == False
+    assert obj.debug == False
+    assert obj.include_agg == True
+    #assert obj.always_non_neg == None
+    assert obj.global_always_non_neg == True
+
+def test_gen_random_proportions_get_yml():
+    # Test get_yml method
+    obj = gen_random_proportions(yml=yml['deducs'])
+    obj.get_yml()
+
+    assert obj.features_p == {
+                        'deduc_1': 0.9,
+                        'deduc_2': 0.75,
+                        'deduc_16': 0.001369,
+                        'deduc_17': 0.017539
+                        }
+    assert obj.distribution == {
+                        'deduc_1': 'beta',
+                        'deduc_2': 'uniform',
+                        'deduc_16': 'uniform',
+                        'deduc_17': 'uniform'
+        }
+    assert obj.parameters == {
+                  'deduc_1': {'a': 8, 'b': 8},
+                  'deduc_2': {'low': 0, 'high': 1},
+                  'deduc_16': {'low': 0, 'high': 1},
+                  'deduc_17': {'low': 0, 'high': 1},
+                  }
+    assert obj.include_agg == False
+    assert obj.normalized == True
 
 
+    
+def test_get_sample():
+    #Testing the generation of sample periods of random length
+    obj = gen_random_proportions(yml=yml['deducs'])
+    obj.get_yml()
+    deduc_df = obj.get_sample()
+    
+    assert len(deduc_df) == 40
+    assert (isinstance(deduc_df, pd.DataFrame)==True)
+    assert (deduc_df.columns == ['deduc_1', 'deduc_2','deduc_16','deduc_17']).all()
+    
+    # All elements must be proportions
+    assert ((deduc_df<=1).sum().sum() == 160)
+    
 
+# Function used in the object for normalize proportions
+def test_normalize_rows():
+    # Case of matrix with multiple columns
+    # Include case 0 and non zero
+    norm = np.array([[0, 0],[0.2, 0.2]])
+    assert (normalize_rows(norm) == np.array([[0,0],[0.5,0.5]])).all()
+    
+    # Case with matrix of one dimention
+    # Case all zero
+    assert (normalize_rows(norm[0]) == np.array([0,0])).all()
+    
+    # Caso non zero
+    assert (normalize_rows(norm[1]) == np.array([0.5,0.5])).all()
+    
+
+    
+#@TODO check if the distributions generated are the ones it supose to be
+    
  ####################################################
  #  TESTING MONEY  GENERATION - gen_money_ts OBJECT #
  ####################################################
+#@TODO Since this ins gonna change, will leave to the end
 
 
-
-  #####################################################################
+ ######################################################################
  #  TESTING OBJECT GENERATION AND POPULATION - ObjectGenerator OBJECT #
  ######################################################################
 

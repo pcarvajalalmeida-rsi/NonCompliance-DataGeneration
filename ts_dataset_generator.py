@@ -163,12 +163,20 @@ def generate_random_numbers(distribution, params, n, seed):
 
 
 def normalize_rows(matrix):
+    '''
+    This function will transform each row of a matrix of proportions so the sum of the proportions sum up to one.
+    In the case a all rows sum up to zero, it will keep it as zero.
     
+    matrix: an np array
+    '''
+    
+    # Cases of vectors instead of matrices
     if len(matrix.shape)==1:
         if matrix.sum()==0:
             pass
         else: matrix = matrix / matrix.sum()
         
+    # Case of a real matrix 
     else:    
         for i in range(matrix.shape[0]):
         # Get the sum of the current row
@@ -182,7 +190,8 @@ def normalize_rows(matrix):
 
 class gen_random_proportions():
     """
-    Class to generate a random sample of n records of multiple deductions or
+    Class to generate a random sample of n records of multiple 
+    ions or
     [net income, effective tax rate and aggregate deductions],
     or any set of proportions, normalized (sum up to 1) or not normalized.
     Result is given in a dataframe.
@@ -201,22 +210,26 @@ class gen_random_proportions():
     Distribution supported and its parameters are defined in the function generate_random_numbers
     """
     
-    def __init__(self, yml, features_p=None, distribution=None, parameters=None,
-                  n = 40, seed = 5, normalized = True, export_csv = False, debug=False, agg=True,
-                always_non_neg=None, global_always_non_neg=True):
+    def __init__(self, yml, rng=None, features_p=None, distribution=None, parameters=None,
+                  n = 40, seed = 5, normalized = True, export_csv = False, debug=False, include_agg=True,
+                  #always_non_neg=None, 
+                 global_always_non_neg=True):
 
+        self.yml = yml
+        self.rng = rng
         self.features_p = features_p
         self.distribution = distribution
         self.parameters = parameters
+        
         self.n = n
-        self.seed = seed
+        self.seed = seed        
         self.normalized = normalized
         self.export_csv  = export_csv
         self.debug=debug
-        self.agg=agg
+        self.include_agg=include_agg
         #self.always_non_neg=always_non_neg
         self.global_always_non_neg=global_always_non_neg
-        self.yml = yml
+        
 
         
     def get_yml(self):
@@ -226,7 +239,7 @@ class gen_random_proportions():
         self.features_p = self.yml['features_p']
         self.distribution = self.yml['distribution']
         self.parameters = self.yml['parameters']
-        self.agg = self.yml['include_agg_deduc']
+        self.include_agg = self.yml['include_agg']
         self.normalized = self.yml['normalized']
         #self.always_non_neg = yml['always_non_neg']
         #@TODO: case when only some of the variables are non-negative self.global_always_non_neg = yml['global_always_non_neg']
@@ -277,8 +290,8 @@ class gen_random_proportions():
             
         matrix_df = pd.DataFrame(matrix, columns = list(self.distribution.keys()))
         
-        if self.agg:
-            matrix_df['agg'] = matrix_df.sum(axis=1)
+        if self.include_agg:
+            matrix_df['include_agg'] = matrix_df.sum(axis=1)
             
         #if self.export_csv:
             #file_name = list(matrix_df.columns)[0][0:5]
@@ -326,16 +339,36 @@ class gen_money_ts():
 class ObjectGenerator(object):
     
     """
-    The yml dictionary should be only concerning this object
+    This object allows to create any object and populate it with data.
+    It applies to objects that have:
+        1) the method get_yml() defined, to populate their parameters
+        2) the method get_sample() defined, to generate a sample of it
+    The purpose is to allow easily the construction of data by using the combination of generators of time series columns or DataFrames, in an very suscint way, as in the function `gen_ts_record`.
+    
+    Args:
+    1) Main ones when using yml configuration file
+    `yml`: the YAML parameters specifics to the object
+    `class_name`: the name of the class to be instantiated to generate the object (ie. gen_random_proportions)
+    
+    2) Args for when instantiated the object without yml files:
+    `class_name` (same as before)
+    `n`: number of rows in teh time series. Default to 40, which are ten years of quarters periods
+    `seed`: integer that represents the seed for the random state
+    `debug`: True if you want to see intermediate printings in the procecss. Default to False
+    `include_agg`: Binary. In case of proportions, if you want to include the sum of the proportions as another column.
+    `export_csv`: Binary. If you want to get a csv file with the time series generated. Default to False.
+    
+    
     """
     def __init__(self, yml, class_name = None,  #_type=TaxPayerType.individual, 
-                 n=None, seed=None, debug=False, agg=True, export_csv=True):
+                 n=40, seed=None, debug=False, include_agg=True, export_csv=False):
         self.yml = yml
         self.class_name = class_name
         self.debug = debug
         self.seed = (np.random.randint(0,np.iinfo(np.int32).max) if seed is None else seed)
-        self.export_csv=export_csv
-        self.n=n
+        self.export_csv = export_csv
+        self.n = n
+        self.include_agg = include_agg
    
     def populate_object(self):
         # Get the class object from the class_name parameter

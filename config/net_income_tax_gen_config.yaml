@@ -1,7 +1,7 @@
 efftax_aggdeduc_netinc:
     naics: 81
     size: s
-    include_agg_deduc: False
+    include_agg: False
     normalized: True
 
     features_p:
