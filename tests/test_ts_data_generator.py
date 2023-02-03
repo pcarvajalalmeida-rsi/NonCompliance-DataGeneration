@@ -1,9 +1,10 @@
 from ts_dataset_generator import (
     generate_random_id, gen_rand_periods,
     gen_random_proportions, normalize_rows,
-    ObjectGenerator, gen_ts_record, gen_ts_dataset
+    ObjectGenerator, gen_ts_record, gen_ts_record_raw, 
+    transform_raw_ts_record, gen_ts_dataset
 )
-        
+from pandas.testing import assert_frame_equal        
 import pytest
 import pandas as pd
 import datetime
@@ -276,6 +277,8 @@ def test_normalize_rows():
  ######################################################################
  #  TESTING ONE TIME SERIES RECORD GENERATION - gen_ts_records   OBJECT #
  ######################################################################
+
+
 def test_gen_ts_record():
     
     record_df = gen_ts_record(yml)
@@ -289,7 +292,70 @@ def test_gen_ts_record():
     # test that the output DataFrame has the correct index frequency
     assert record_df.index.freq == 'Q', f"Expected frequency to be 'Q', but got: {record_df.index.freq}"
 
-    #@TODO: add more cases: calculations (matricial operations - non random)
+
+# Testing the transformation
+# Data
+periods_index = pd.DataFrame({'period': 
+                          ['2021Q4', '2022Q1', '2022Q2', '2022Q3', '2022Q4']
+                             })
+
+id_df = pd.DataFrame({'business_id': 
+                              [999999, 999999, 999999, 999999,999999]
+                     })
+
+income_df = pd.DataFrame({'income': 
+                          [0, 1 , 10 , 100, 1000]
+                         })
+
+efftax_aggdeduc_netinc_df = pd.DataFrame(    
+    [
+    [0.3, 0.33, 0.34],
+    [0,      0, 0   ],
+    [0,      1, 0   ],
+    [0.5,    0, 0.5 ],
+    [0.5,  0.5, 0   ]
+    ],
+    columns= ['effect_tax_rate', 'agg_deduc', 'net_income']
+)
+
+deducs_df =pd.DataFrame(
+    [
+    [0.25, 0.25, 0.25, 0.25],
+    [0.25, 0.25, 0.25, 0.25],
+    [0.10, 0.20, 0.30, 0.40],
+    [0.25, 0.25, 0.25, 0.25],
+    [0.25, 0.25, 0.25, 0.25]
+    ],
+    columns= ['deduc_1', 'deduc_2', 'deduc_16', 'deduc_17']
+)
+
+raw_ts_objects = {'periods_index': periods_index, 
+                  'id_df': id_df,
+                  'income_df': income_df, 
+                  'efftax_aggdeduc_netinc_df':efftax_aggdeduc_netinc_df, 
+                  'deducs_df': deducs_df
+             }
+
+transformed_df = pd.DataFrame({
+'period':[('2021Q4',),('2022Q1',),('2022Q2',),('2022Q3',),('2022Q4',)],
+'business_id': [999999, 999999, 999999, 999999, 999999],
+'income':      [0, 1 , 10 , 100, 1000],
+'tax_paid':    [0.0, 0.0,  0.0,   50.0,   500.0],
+'agg_deduc':   [0.0, 0.0,  10.0,  0.0,   500.0],
+'deduc_1':     [0.0, 0.0,  1.0,   0.0,   125.0],
+'deduc_2':     [0.0, 0.0,  2.0,   0.0,   125.0],
+'deduc_16':    [0.0, 0.0,  3.0,   0.0,   125.0],
+'deduc_17':    [0.0, 0.0,  4.0,   0.0,   125.0]
+})
+transformed_df.set_index('period', inplace=True)
+transformed_df.index.name = None
+transformed_df.sort_index(ascending = False, inplace=True)
+   
+     
+# Transformation test
+def test_transform_raw_ts_record():
+        assert_frame_equal(transform_raw_ts_record(raw_ts_objects),transformed_df)
+    
 
  ######################################################################
  #  TESTING TIME SERIES DATASET GENERATION - gen_ts_dataset   OBJECT #
@@ -307,10 +373,7 @@ def test_gen_ts_dataset():
     assert (dataset_df.columns.to_list() == ['business_id', 'income', 'tax_paid', 'agg_deduc', 'deduc_1', 'deduc_2', 'deduc_16','deduc_17'])
     assert len(dataset_df.columns) == 8, f"Expected 8 columns, but got {len(dataset_df.columns)}"
     
-    
-    
 
-    
-#     # test that the output DataFrame has the correct index frequency
-#     assert record_df.index.freq == 'Q'
+# test that the output DataFrame has the correct index frequency is quarterly
+    assert dataset_df.index.freqstr == 'Q-DEC'
     

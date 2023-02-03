@@ -398,9 +398,96 @@ class ObjectGenerator(object):
 
 
 
-def gen_ts_record(yml, seed=1, debug=False):
+# def gen_ts_record_old(yml, seed=1, debug=False):
+#     """
+#     This function generates a record comprised by a concatenation of objects and possible transformation among them.
+#     The steps are:
+#     1. Generation of columns from objects
+#     1.1. Index using the `gen_rand_periods()` class. This step defines the random length of the record.
+#     1.2. Ids   using the `generate_random_id()` function.
+#     1.3. Income using the `gen_money_ts()` class
+#     1.4. Distribution of the income in tax paid, net income and aggregate deductions, using the `gen_random_proportions()` class. This distribution for each row of the record.
+#     1.5. Distribution of deductions in every period (row) of the record
+    
+#     2. Tranformation: converting proportions to money and re-grouping/drops
+#     2.1. Calculate tax_paid, aggregate deductions as amplyfying the proportion by the income
+#     2.2. Calculate deductions as amplyfying the proportions by the income
+    
+    
+#     3. Setting up the index as the element in 1.1 for all the dataframe record
+    
+    
+#     Args:
+#     yml: a yaml dictionary containing the key parameters for the objects: 'periods', 'income', and 'deducs'. For the required parameters, see the method get_yml() associated to each object
+#     """
+    
+
+#     # GENERATION OF INDEX AND OBJECTS
+#     # This can be made using a loop, but I prefer to see each of the components
+   
+#     # 1. Index periods
+#     periods = ObjectGenerator(yml=yml.get('periods'), class_name='gen_rand_periods', seed=seed)
+#     periods_index = periods.populate_object()
+#     n = len(periods_index)
+#     if debug: print(n, periods_index)
+
+#     # 2. Business ID of id_digits
+#     business_id = generate_random_id(n=8, seed=seed)
+#     id_df = pd.DataFrame([business_id]*n, columns=['business_id'])
+#     if debug: display(id_df)
+
+#     # 3. Income - money
+#     income = ObjectGenerator(yml=yml.get('income'), class_name='gen_money_ts', n=n, seed=seed)
+#     income_df = income.populate_object()
+#     if debug: display(income_df)
+
+#     # 4. Distribution of the income: effective tax rate + aggregate deductions + net income
+#     efftax_aggdeduc_netinc = ObjectGenerator(yml=yml.get('efftax_aggdeduc_netinc'), 
+#                                              class_name='gen_random_proportions', 
+#                                              n=n, seed=seed)
+#     efftax_aggdeduc_netinc_df = efftax_aggdeduc_netinc.populate_object()
+#     if debug: display(efftax_aggdeduc_netinc_df)
+
+#     # 5. Distribution of deductions
+#     deducs = ObjectGenerator(yml=yml.get('deducs'), 
+#                              class_name='gen_random_proportions', 
+#                              n=n, seed=seed
+#     )
+#     deducs_df = deducs.populate_object()
+#     if debug: display(deducs_df)
+
+#     # 2. TRANSFORMATIONS FROM THE RAW OBJECTS TO THE FINAL TIME SERIES OBJECT
+#     # amplified proportions to money
+#     # 2.1. tax_paid, aggregate deductions: from proportions to money
+#     efftax_aggdeduc_netinc_df = income_df.values * efftax_aggdeduc_netinc_df
+#     efftax_aggdeduc_df = efftax_aggdeduc_netinc_df.drop(columns=['net_income'])
+#     mapper = {'effect_tax_rate': 'tax_paid'}
+#     taxpaid_aggdeduc_df = efftax_aggdeduc_df.rename(columns=mapper)
+
+#     # 2.2 Deductions from proportion to money
+#     deducs_df = taxpaid_aggdeduc_df[['agg_deduc']].values * deducs_df
+#     record_df = pd.concat([id_df,income_df, 
+#                            taxpaid_aggdeduc_df, 
+#                            deducs_df], 
+#                           axis=1
+#     )
+#     record_df = round(record_df,2)
+
+#     #3. Setting up the index
+#     # Adding period index
+#     record_df.index = periods_index
+#     record_df.sort_index(ascending=False, inplace=True)
+
+#     return record_df
+
+
+
+
+
+
+def gen_ts_record_raw(yml, seed=1, debug=False):
     """
-    This function generates a record comprised by a concatenation of objects and possible transformation among them.
+    This function generates a rawa record comprised by a concatenation of objects and possible transformation among them.
     The steps are:
     1. Generation of columns from objects
     1.1. Index using the `gen_rand_periods()` class. This step defines the random length of the record.
@@ -408,6 +495,65 @@ def gen_ts_record(yml, seed=1, debug=False):
     1.3. Income using the `gen_money_ts()` class
     1.4. Distribution of the income in tax paid, net income and aggregate deductions, using the `gen_random_proportions()` class. This distribution for each row of the record.
     1.5. Distribution of deductions in every period (row) of the record
+    
+    
+    Args:
+    yml: a yaml dictionary containing the key parameters for the objects: 'periods', 'income', and 'deducs'. For the required parameters, see the method get_yml() associated to each object
+    
+    Returns:
+    A dictionary of dataframes and a period index.
+    """
+    
+    # GENERATION OF INDEX AND OBJECTS
+    # This can be made using a loop, but I prefer to see each of the components
+    
+    # Resetting random state so always gives same record
+    # initial_state = random.getstate()
+    # random.seed(seed)
+
+    # Index periods
+    periods = ObjectGenerator(yml=yml.get('periods'), class_name='gen_rand_periods', seed=seed)
+    periods_index = periods.populate_object()
+    n = len(periods_index)
+    if debug: print(n, periods_index)
+
+    # Business ID of id_digits
+    business_id = generate_random_id(n=8, seed=seed)
+    id_df = pd.DataFrame([business_id]*n, columns=['business_id'])
+    if debug: display(id_df)
+
+    # Income -money
+    income = ObjectGenerator(yml=yml.get('income'), class_name='gen_money_ts', n=n, seed=seed)
+    income_df = income.populate_object()
+    if debug: display(income_df)
+
+    # Decomposition of the income: effective tax rate + aggregate deductions + net income
+    efftax_aggdeduc_netinc = ObjectGenerator(yml=yml.get('efftax_aggdeduc_netinc'), 
+                                             class_name='gen_random_proportions', 
+                                             n=n, seed=seed)
+    efftax_aggdeduc_netinc_df = efftax_aggdeduc_netinc.populate_object()
+    if debug: display(efftax_aggdeduc_netinc_df)
+
+    # Decomposition of deductions
+    deducs = ObjectGenerator(yml=yml.get('deducs'), class_name='gen_random_proportions', 
+                             n=n, seed=seed)
+    deducs_df = deducs.populate_object()
+    if debug: display(deducs_df)
+
+    raw_ts_objects = {'periods_index': periods_index, 
+                      'id_df': id_df,
+                      'income_df': income_df, 
+                      'efftax_aggdeduc_netinc_df':efftax_aggdeduc_netinc_df, 
+                      'deducs_df': deducs_df
+                     }
+        
+    return raw_ts_objects
+
+
+def transform_raw_ts_record(raw_ts_objects):
+    """
+    This function work together with  gen_ts_record_raw to transforma set of raw records.
+    After the Generation of columns from objects, the transformation do as follows:
     
     2. Tranformation: converting proportions to money and re-grouping/drops
     2.1. Calculate tax_paid, aggregate deductions as amplyfying the proportion by the income
@@ -418,47 +564,27 @@ def gen_ts_record(yml, seed=1, debug=False):
     
     
     Args:
-    yml: a yaml dictionary containing the key parameters for the objects: 'periods', 'income', and 'deducs'. For the required parameters, see the method get_yml() associated to each object
+    raw_ts_objects which is a dictionary of raw dataframe objects. populated, that needs to be transformed
+    For example:     {'periods_index': periods_index, 
+                      'id_df': id_df,
+                      'income_df': income_df, 
+                      'efftax_aggdeduc_netinc_df':efftax_aggdeduc_netinc_df, 
+                      'deducs_df': deducs_df
+                     }
+
     """
     
-
-    # GENERATION OF INDEX AND OBJECTS
-    # This can be made using a loop, but I prefer to see each of the components
-   
-    # 1. Index periods
-    periods = ObjectGenerator(yml=yml.get('periods'), class_name='gen_rand_periods', seed=seed)
-    periods_index = periods.populate_object()
-    n = len(periods_index)
-    if debug: print(n, periods_index)
-
-    # 2. Business ID of id_digits
-    business_id = generate_random_id(n=8, seed=seed)
-    id_df = pd.DataFrame([business_id]*n, columns=['business_id'])
-    if debug: display(id_df)
-
-    # 3. Income - money
-    income = ObjectGenerator(yml=yml.get('income'), class_name='gen_money_ts', n=n, seed=seed)
-    income_df = income.populate_object()
-    if debug: display(income_df)
-
-    # 4. Distribution of the income: effective tax rate + aggregate deductions + net income
-    efftax_aggdeduc_netinc = ObjectGenerator(yml=yml.get('efftax_aggdeduc_netinc'), 
-                                             class_name='gen_random_proportions', 
-                                             n=n, seed=seed)
-    efftax_aggdeduc_netinc_df = efftax_aggdeduc_netinc.populate_object()
-    if debug: display(efftax_aggdeduc_netinc_df)
-
-    # 5. Distribution of deductions
-    deducs = ObjectGenerator(yml=yml.get('deducs'), 
-                             class_name='gen_random_proportions', 
-                             n=n, seed=seed
-    )
-    deducs_df = deducs.populate_object()
-    if debug: display(deducs_df)
-
+    # Getting the values
+    periods_index = raw_ts_objects['periods_index']
+    id_df         = raw_ts_objects['id_df']
+    efftax_aggdeduc_netinc_df = raw_ts_objects['efftax_aggdeduc_netinc_df']
+    income_df     = raw_ts_objects['income_df']
+    deducs_df     = raw_ts_objects['deducs_df']
+    
     # 2. TRANSFORMATIONS FROM THE RAW OBJECTS TO THE FINAL TIME SERIES OBJECT
     # amplified proportions to money
     # 2.1. tax_paid, aggregate deductions: from proportions to money
+   
     efftax_aggdeduc_netinc_df = income_df.values * efftax_aggdeduc_netinc_df
     efftax_aggdeduc_df = efftax_aggdeduc_netinc_df.drop(columns=['net_income'])
     mapper = {'effect_tax_rate': 'tax_paid'}
@@ -473,12 +599,19 @@ def gen_ts_record(yml, seed=1, debug=False):
     )
     record_df = round(record_df,2)
 
-    #3. Setting up the index
+    #3. adding index
     # Adding period index
     record_df.index = periods_index
     record_df.sort_index(ascending=False, inplace=True)
 
+    #random.setstate(initial_state)
     return record_df
+
+
+def gen_ts_record(yml, seed=1, debug=False):
+    raw_ts_objects = gen_ts_record_raw(yml, seed=seed, debug=False)
+    record_df = transform_raw_ts_record(raw_ts_objects)
+    return (record_df)
 
 
 
