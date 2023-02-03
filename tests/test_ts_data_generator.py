@@ -2,7 +2,7 @@ from ts_dataset_generator import (
     generate_random_id, gen_rand_periods,
     gen_random_proportions, normalize_rows,
     ObjectGenerator, gen_ts_record, gen_ts_record_raw, 
-    transform_raw_ts_record, gen_ts_dataset
+    transform_raw_ts_record, gen_ts_dataset, gen_money_ts
 )
 from pandas.testing import assert_frame_equal        
 import pytest
@@ -11,6 +11,7 @@ import datetime
 import numpy as np
 from dateutil.relativedelta import relativedelta
 from pandas import PeriodIndex
+import os
 
 # Sample input for the test
 yml = {
@@ -264,20 +265,37 @@ def test_normalize_rows():
  ####################################################
  #  TESTING MONEY  GENERATION - gen_money_ts OBJECT #
  ####################################################
-#@TODO Since this ins gonna change, will leave to the end
 
+def test_gen_money_ts():
+    income = gen_money_ts(yml['income'])
+    income.get_yml()
+    income_df = income.get_sample()
+    
+    assert isinstance(income_df, pd.DataFrame), f"Expected pd.DataFrame, but got {type(dataset_df)} instead"
+    assert income_df.shape[0] > 0, "DataFrame has no elements"
+    assert income_df.select_dtypes(include=[float]).shape == income_df.shape, "DataFrame contains non-float values. Since this is money, it must be float due to cents."
+    assert_frame_equal(round(income_df),income_df), "Numbers are not rounded to 2 decimals. It must since thisin money."
+    
 
- ######################################################################
+  ######################################################################
  #  TESTING OBJECT GENERATION AND POPULATION - ObjectGenerator OBJECT #
  ######################################################################
+def test_ObjectGenerator():
+    # Will try generating a distribution of deductions. 
+    # Dataframe was created
+    deducs = ObjectGenerator(yml=yml.get('deducs'), 
+                              class_name='gen_random_proportions', 
+                              seed=seed, n=40)
+    deducs_df = deducs.populate_object()
+    assert isinstance(deducs_df, pd.DataFrame), f"Expected pd.DataFrame, but got {type(deducs_df)}"
+    
+    # Dataframe has content
+    assert deducs_df.shape[0] > 0, f"deducs_df Dataframe has no content"
+    
 
-
-
-
- ######################################################################
+ ########################################################################
  #  TESTING ONE TIME SERIES RECORD GENERATION - gen_ts_records   OBJECT #
- ######################################################################
-
+ ########################################################################
 
 def test_gen_ts_record():
     
@@ -374,6 +392,15 @@ def test_gen_ts_dataset():
     assert len(dataset_df.columns) == 8, f"Expected 8 columns, but got {len(dataset_df.columns)}"
     
 
-# test that the output DataFrame has the correct index frequency is quarterly
+    # test that the output DataFrame has the correct index frequency is quarterly
     assert dataset_df.index.freqstr == 'Q-DEC'
+    
+    # test that a csv file was generated
+    path = './outputs/new_dataset.csv'
+    def assert_csv_created(path):
+        assert os.path.exists(path), f"{path} does not exist"
+        assert os.path.isfile(path), f"{path} is not a file"
+        assert path.endswith('.csv'), f"{file_path} is not a csv file"
+    
+    
     
