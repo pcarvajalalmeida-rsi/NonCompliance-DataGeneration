@@ -1,4 +1,4 @@
-# Time series Data Generator
+# Time series Data Generator - No-Compliance case.
 
 import numpy as np
 import pandas as pd
@@ -15,6 +15,7 @@ from dstools.datautils.datagen import random_datetimes, Source
 from dstools.config.baseconfig import YmlConfig
 from dstools.sqlutils.sqlconfig import SQLConfig
 from dstools.sqlutils.util import DbConnectGenerator
+from typing import Dict, List
 
 
 yml = YmlConfig('./config/', read_all=True, ext='yaml')
@@ -23,7 +24,7 @@ yml_headers = yml.lowerkeys().keys()
 seed=1
 rng = np.random.default_rng(seed=seed)
 
-def generate_random_id(n: int = 8, seed: int =1, rng=None):
+def generate_random_id(n:int=8, seed:int=1, rng=None):
     """
     This function returns a number of n digits, which is to be used as an identifier (id)
   
@@ -39,12 +40,12 @@ def generate_random_id(n: int = 8, seed: int =1, rng=None):
     return rng.integers(start, end)
 
 
-class gen_rand_periods():
-    def __init__(self, yml: dict = None, last_date: str = '2022-12-31', 
-                 max_nperiods_back: str = 40, 
-                 freq: str = 'Q', prob_inactive: float = 0.1, seed: int=1, 
-                 src_file: str = None, outcomes_col:str = None, 
-                 export_csv: bool = False, debug:bool = False, **args):
+class GenRandPeriods():
+    def __init__(self, yml:Dict=None, last_date:str='2022-12-31', 
+                 max_nperiods_back:str=40, 
+                 freq:str='Q', prob_inactive:float=0.1, seed:int=1, 
+                 src_file:str= None, outcomes_col:str=None, 
+                 export_csv:bool=False, debug:bool=False, **args):
         """
         The class generates n random periods for one time series. The lenght n is itself a random number of periods. The random lenght period has up to max_nperiods_back records. 
         A proportion of prob_inactive companies are inactive. Inactive means that its last record will be before the last period signaled by the last_date.
@@ -59,7 +60,7 @@ class gen_rand_periods():
         src_file: is the file that contains in a columns (the `outcomes_col`) a list of outcomes for the number of periods in a sample. For example, the column may have the following values: [20,20,31,42,50] which will mean that out of 5 outcomes, 20 periods appear twice, and 31, 42 and 50 appear just one. That means the probability that will be applied will be 2/5 for 20, and 1/5 for the rest.
         prob_inactive: A float representing a probability value between 0 and 1, inclusive.
         """
-        self.last_date  = pd.Timestamp(last_date)
+        self.last_date = pd.Timestamp(last_date)
         self.max_nperiods_back = max_nperiods_back
         self.freq = freq
         self.prob_inactive = prob_inactive
@@ -116,7 +117,7 @@ class gen_rand_periods():
         return start_date
   
         
-    def get_sample(self) -> list:
+    def get_sample(self) -> List:
         """
         It generates a list of consecutive periods of frequence `freq`.
         The periods are associated to active or inactive companies. There is a probability "self.prob_inactive" that the company is not active. This inactive companies will have a period that ends before the provided `last_date`.
@@ -125,10 +126,10 @@ class gen_rand_periods():
         rng = np.random.default_rng(seed = self.seed)
         inactive = rng.binomial(1, self.prob_inactive)
 
-        if inactive==1:
+        if inactive == 1:
             if self.debug: print("inactive flag")
-            self.start_date = self.date_n_periods_back(last_date = self.last_date, n_back = self.max_nperiods_back, freq=self.freq)
-            self.last_date = random_datetimes(start = self.start_date , end = self.last_date)
+            self.start_date = self.date_n_periods_back(last_date=self.last_date, n_back=self.max_nperiods_back, freq=self.freq)
+            self.last_date = random_datetimes(start=self.start_date, end=self.last_date)
         
         # Generate a random number of periods for the generated time series
         if self.src_file==None:
@@ -148,7 +149,7 @@ class gen_rand_periods():
 
 
 
-def generate_random_numbers(distribution: str, params: dict, n: int, seed: int) -> np.array:
+def generate_random_numbers(distribution:str, params:Dict, n:int, seed:int) -> np.array:
     """
     This function generates random numbers of different distributions.
     
@@ -162,7 +163,7 @@ def generate_random_numbers(distribution: str, params: dict, n: int, seed: int) 
     
     """
     
-    rng = np.random.default_rng(seed = seed)
+    rng = np.random.default_rng(seed=seed)
     if distribution == 'normal':
         return rng.normal(params['mean'], params['std'], n)
     elif distribution == 'beta':
@@ -185,8 +186,8 @@ def normalize_rows(matrix: np.array) -> np.array:
     '''
     
     # Cases of vectors instead of matrices
-    if len(matrix.shape)==1:
-        if matrix.sum()==0:
+    if len(matrix.shape) == 1:
+        if matrix.sum() == 0:
             pass
         else: matrix = matrix / matrix.sum()
         
@@ -202,7 +203,7 @@ def normalize_rows(matrix: np.array) -> np.array:
     return matrix
 
 
-class gen_random_proportions():
+class GenRandomProportions():
     """
     Class to generate a random sample of n records of multiple 
     ions or
@@ -224,8 +225,8 @@ class gen_random_proportions():
     Distribution supported and its parameters are defined in the function generate_random_numbers
     """
     
-    def __init__(self, yml: dict, rng: np.random._generator.Generator = None, 
-                 features_p:dict = None, distribution: dict = None, parameters:dict = None,
+    def __init__(self, yml:Dict, rng:np.random._generator.Generator=None, 
+                 features_p:Dict=None, distribution:Dict=None, parameters:Dict = None,
                   n:int = 40, seed: int = 5, normalized: bool = True, 
                  export_csv: bool = False, debug: bool = False, include_agg: bool = True,
                   #always_non_neg=None, 
@@ -304,7 +305,7 @@ class gen_random_proportions():
             if self.debug:
                 print("matrix normalized: \n",matrix)
             
-        matrix_df = pd.DataFrame(matrix, columns = list(self.distribution.keys()))
+        matrix_df = pd.DataFrame(matrix, columns=list(self.distribution.keys()))
         
         if self.include_agg:
             matrix_df['include_agg'] = matrix_df.sum(axis=1)
@@ -317,14 +318,15 @@ class gen_random_proportions():
 
 
 
-class gen_money_ts():
+class GenMoneyTS():
     """
     This class generates time series of money, so it can be used to model income or other finanial time series
     """
 
-    def __init__(self, yml:dict, distribution: str = None, parameters: dict = None, 
-                  n:int = 40, seed:int = 5, 
-                 export_csv: bool = False, debug: bool = False, always_non_neg: bool = True):
+    def __init__(self, yml:Dict, distribution:str=None, parameters:Dict=None, 
+                  n:int=40, seed:int=5, 
+                 export_csv:bool=False, debug:bool=False, 
+                 always_non_neg:bool=True):
 
         self.distribution = distribution
         self.parameters = parameters
@@ -376,9 +378,9 @@ class ObjectGenerator(object):
     
     
     """
-    def __init__(self, yml:dict , class_name:str = None,  #_type=TaxPayerType.individual, 
-                 n:int = 40, seed:int = None, 
-                 debug: bool = False, include_agg: bool = True, export_csv: bool = False):
+    def __init__(self, yml:Dict , class_name:str=None,  #_type=TaxPayerType.individual, 
+                 n:int=40, seed:int=None, 
+                 debug:bool=False, include_agg:bool=True, export_csv:bool=False):
         self.yml = yml
         self.class_name = class_name
         self.debug = debug
@@ -401,91 +403,7 @@ class ObjectGenerator(object):
 
 
 
-# DELETE ONCE FUNCTION TO GENERATE DATASET ARE APPROVED
-# def gen_ts_record_old(yml, seed=1, debug=False):
-#     """
-#     This function generates a record comprised by a concatenation of objects and possible transformation among them.
-#     The steps are:
-#     1. Generation of columns from objects
-#     1.1. Index using the `gen_rand_periods()` class. This step defines the random length of the record.
-#     1.2. Ids   using the `generate_random_id()` function.
-#     1.3. Income using the `gen_money_ts()` class
-#     1.4. Distribution of the income in tax paid, net income and aggregate deductions, using the `gen_random_proportions()` class. This distribution for each row of the record.
-#     1.5. Distribution of deductions in every period (row) of the record
-    
-#     2. Tranformation: converting proportions to money and re-grouping/drops
-#     2.1. Calculate tax_paid, aggregate deductions as amplyfying the proportion by the income
-#     2.2. Calculate deductions as amplyfying the proportions by the income
-    
-    
-#     3. Setting up the index as the element in 1.1 for all the dataframe record
-    
-    
-#     Args:
-#     yml: a yaml dictionary containing the key parameters for the objects: 'periods', 'income', and 'deducs'. For the required parameters, see the method get_yml() associated to each object
-#     """
-    
-
-#     # GENERATION OF INDEX AND OBJECTS
-#     # This can be made using a loop, but I prefer to see each of the components
-   
-#     # 1. Index periods
-#     periods = ObjectGenerator(yml=yml.get('periods'), class_name='gen_rand_periods', seed=seed)
-#     periods_index = periods.populate_object()
-#     n = len(periods_index)
-#     if debug: print(n, periods_index)
-
-#     # 2. Business ID of id_digits
-#     business_id = generate_random_id(n=8, seed=seed)
-#     id_df = pd.DataFrame([business_id]*n, columns=['business_id'])
-#     if debug: display(id_df)
-
-#     # 3. Income - money
-#     income = ObjectGenerator(yml=yml.get('income'), class_name='gen_money_ts', n=n, seed=seed)
-#     income_df = income.populate_object()
-#     if debug: display(income_df)
-
-#     # 4. Distribution of the income: effective tax rate + aggregate deductions + net income
-#     efftax_aggdeduc_netinc = ObjectGenerator(yml=yml.get('efftax_aggdeduc_netinc'), 
-#                                              class_name='gen_random_proportions', 
-#                                              n=n, seed=seed)
-#     efftax_aggdeduc_netinc_df = efftax_aggdeduc_netinc.populate_object()
-#     if debug: display(efftax_aggdeduc_netinc_df)
-
-#     # 5. Distribution of deductions
-#     deducs = ObjectGenerator(yml=yml.get('deducs'), 
-#                              class_name='gen_random_proportions', 
-#                              n=n, seed=seed
-#     )
-#     deducs_df = deducs.populate_object()
-#     if debug: display(deducs_df)
-
-#     # 2. TRANSFORMATIONS FROM THE RAW OBJECTS TO THE FINAL TIME SERIES OBJECT
-#     # amplified proportions to money
-#     # 2.1. tax_paid, aggregate deductions: from proportions to money
-#     efftax_aggdeduc_netinc_df = income_df.values * efftax_aggdeduc_netinc_df
-#     efftax_aggdeduc_df = efftax_aggdeduc_netinc_df.drop(columns=['net_income'])
-#     mapper = {'effect_tax_rate': 'tax_paid'}
-#     taxpaid_aggdeduc_df = efftax_aggdeduc_df.rename(columns=mapper)
-
-#     # 2.2 Deductions from proportion to money
-#     deducs_df = taxpaid_aggdeduc_df[['agg_deduc']].values * deducs_df
-#     record_df = pd.concat([id_df,income_df, 
-#                            taxpaid_aggdeduc_df, 
-#                            deducs_df], 
-#                           axis=1
-#     )
-#     record_df = round(record_df,2)
-
-#     #3. Setting up the index
-#     # Adding period index
-#     record_df.index = periods_index
-#     record_df.sort_index(ascending=False, inplace=True)
-
-#     return record_df
-
-
-def gen_ts_record_raw(yml: dict, seed: int = 1, debug: bool = False) -> pd.DataFrame:
+def gen_ts_record_raw(yml:Dict, seed:int=1, debug:bool=False) -> pd.DataFrame:
     """
     This function generates a rawa record comprised by a concatenation of objects and possible transformation among them.
     The steps are:
@@ -512,7 +430,7 @@ def gen_ts_record_raw(yml: dict, seed: int = 1, debug: bool = False) -> pd.DataF
     # random.seed(seed)
 
     # Index periods
-    periods = ObjectGenerator(yml=yml.get('periods'), class_name='gen_rand_periods', seed=seed)
+    periods = ObjectGenerator(yml=yml.get('periods'), class_name='GenRandPeriods', seed=seed)
     periods_index = periods.populate_object()
     n = len(periods_index)
     if debug: print(n, periods_index)
@@ -523,19 +441,21 @@ def gen_ts_record_raw(yml: dict, seed: int = 1, debug: bool = False) -> pd.DataF
     if debug: display(id_df)
 
     # Income -money
-    income = ObjectGenerator(yml=yml.get('income'), class_name='gen_money_ts', n=n, seed=seed)
+    income = ObjectGenerator(yml=yml.get('income'), class_name='GenMoneyTS', n=n, seed=seed)
     income_df = income.populate_object()
     if debug: display(income_df)
 
     # Decomposition of the income: effective tax rate + aggregate deductions + net income
-    efftax_aggdeduc_netinc = ObjectGenerator(yml=yml.get('efftax_aggdeduc_netinc'), 
-                                             class_name='gen_random_proportions', 
-                                             n=n, seed=seed)
+    efftax_aggdeduc_netinc = ObjectGenerator(
+                yml=yml.get('efftax_aggdeduc_netinc'), 
+                class_name='GenRandomProportions', 
+                n=n, seed=seed
+    )
     efftax_aggdeduc_netinc_df = efftax_aggdeduc_netinc.populate_object()
     if debug: display(efftax_aggdeduc_netinc_df)
 
     # Decomposition of deductions
-    deducs = ObjectGenerator(yml=yml.get('deducs'), class_name='gen_random_proportions', 
+    deducs = ObjectGenerator(yml=yml.get('deducs'), class_name='GenRandomProportions', 
                              n=n, seed=seed)
     deducs_df = deducs.populate_object()
     if debug: display(deducs_df)
@@ -550,7 +470,7 @@ def gen_ts_record_raw(yml: dict, seed: int = 1, debug: bool = False) -> pd.DataF
     return raw_ts_objects
 
 
-def transform_raw_ts_record(raw_ts_objects: dict) -> pd.DataFrame:
+def transform_raw_ts_record(raw_ts_objects:Dict) -> pd.DataFrame:
     """
     This function work together with  gen_ts_record_raw to transforma set of raw records.
     After the Generation of columns from objects, the transformation do as follows:
@@ -608,15 +528,15 @@ def transform_raw_ts_record(raw_ts_objects: dict) -> pd.DataFrame:
     return record_df
 
 
-def gen_ts_record(yml: dict, seed: int = 1, debug: bool = False) -> pd.DataFrame:
-    raw_ts_objects = gen_ts_record_raw(yml, seed=seed, debug=False)
-    record_df = transform_raw_ts_record(raw_ts_objects)
-    return (record_df)
+def gen_ts_record(yml:Dict, seed:int=1, debug:bool=False) -> pd.DataFrame:
+    raw_ts_objects=gen_ts_record_raw(yml, seed=seed, debug=False)
+    record_df=transform_raw_ts_record(raw_ts_objects)
+    return(record_df)
 
 
 
-class gen_ts_dataset():
-    yml: dict
+class GenTSDataset():
+    yml: Dict
     n_sample: int
     seed: int
     debug: bool
@@ -629,7 +549,7 @@ class gen_ts_dataset():
 
     seed: int. A initial seed for the random state of the generation
     """
-    def __init__(self, yml: dict, n_samples: int = 50, seed: int = 1, 
+    def __init__(self, yml: Dict, n_samples: int = 50, seed: int = 1, 
                  debug: bool = False, export_csv: bool = True):
         self.n_samples = n_samples
         self.seed = seed

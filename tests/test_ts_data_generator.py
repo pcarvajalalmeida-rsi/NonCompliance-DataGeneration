@@ -1,8 +1,13 @@
+# Test for No-Compliance Random Data Generators Objects and Functions.
+# Paola Carvajal Almeida
+# pcarvajalalmeida@rsimail.com
+
 from ts_dataset_generator import (
-    generate_random_id, gen_rand_periods,
-    gen_random_proportions, normalize_rows,
-    ObjectGenerator, gen_ts_record, gen_ts_record_raw, 
-    transform_raw_ts_record, gen_ts_dataset, gen_money_ts
+    GenTSDataset, GenRandPeriods, GenRandomProportions, 
+    GenMoneyTS, ObjectGenerator,  
+    normalize_rows, generate_random_id,
+    gen_ts_record, gen_ts_record_raw, 
+    transform_raw_ts_record
 )
 from pandas.testing import assert_frame_equal        
 import pytest
@@ -20,39 +25,39 @@ yml = {
        'max_nperiods_back': 40,
        'freq': 'Q',
        'prob_inactive': 0.05,
-       'src_file': 'Resources/81n_per_loc_and_bus.csv',
+       'src_file': 'resources/81n_per_loc_and_bus.csv',
        'outcomes_col': 'n_per_each_loc_bus_id'
    },
    'efftax_aggdeduc_netinc':{
-      'naics': 81,
-      'size': 's',
-      'include_agg': False,
-      'normalized': True,
-      'features_p': {'effect_tax_rate': 1, 'agg_deduc': 1, 'net_income': 1},
-      'distribution': {'effect_tax_rate': 'normal',
+        'naics': 81,
+        'size': 's',
+        'include_agg': False,
+        'normalized': True,
+        'features_p': {'effect_tax_rate': 1, 'agg_deduc': 1, 'net_income': 1},
+        'distribution': {'effect_tax_rate': 'normal',
                       'agg_deduc': 'beta',
                       'net_income': 'normal'
                     },
-      'parameters': {
-        'effect_tax_rate': {'mean': 0.15, 'std': 0.1},
-        'agg_deduc': {'a': 2, 'b': 6},
-        'net_income': {'mean': 0.67, 'std': 0.05}
+        'parameters': {
+            'effect_tax_rate': {'mean': 0.15, 'std': 0.1},
+            'agg_deduc': {'a': 2, 'b': 6},
+            'net_income': {'mean': 0.67, 'std': 0.05}
                    },
-      'global_always_non_neg': False,
-      'always_non_neg': {
-          'net_income': False,
-          'effect_tax_rate': True,
-          'agg_deduc': True}
+        'global_always_non_neg': False,
+        'always_non_neg': {
+        'net_income': False,
+        'effect_tax_rate': True,
+        'agg_deduc': True}
    },  
     
    'income': {
-      'naics': 81,
-      'size': 's',
-      'always_non_neg': True,
-      'period': 'Q',
-      'last_date': datetime.date(2022, 12, 31),
-      'distribution': 'normal',
-      'parameters': {'mean': 250000, 'std': 100000}
+        'naics': 81,
+        'size': 's',
+        'always_non_neg': True,
+        'period': 'Q',
+        'last_date': datetime.date(2022, 12, 31),
+        'distribution': 'normal',
+        'parameters': {'mean': 250000.0, 'std': 100000.0}
    },
     'deducs':{
         'naics': 81,
@@ -84,7 +89,7 @@ yml = {
 
 
 seed = 1
-rng  = np.random.default_rng(seed=seed)
+rng  = np.random.default_rng(seed = seed)
 
 def test_generate_random_id():
     # CASE PASSING RNG
@@ -106,11 +111,11 @@ def test_generate_random_id():
     assert len(str(_id)) == 10
 
  ########################################################
- #  TESTING PERIOD GENERATION - gen_rand_periods OBJECT #
+ #  TESTING PERIOD GENERATION - GenRandPeriods OBJECT   #
  ########################################################
-def test_gen_rand_periods_initialization():
+def test_GenRandPeriods_initialization():
     # INIT METHOD - DEFAULT VALUES
-    obj = gen_rand_periods(yml['periods'])
+    obj = GenRandPeriods(yml['periods'])
 
     assert obj.last_date == pd.Timestamp('2022-12-31')
     assert obj.max_nperiods_back == 40
@@ -123,21 +128,21 @@ def test_gen_rand_periods_initialization():
     assert obj.outcomes_col == None
     assert obj.debug == False
 
-def test_gen_rand_periods_get_yml():
+def test_GenRandPeriods_get_yml():
     # Test get_yml method
-    obj = gen_rand_periods(yml=yml['periods'])
+    obj = GenRandPeriods(yml=yml['periods'])
     obj.get_yml()
 
     assert obj.last_date == pd.Timestamp('2022-12-31')
     assert obj.max_nperiods_back == 40
     assert obj.freq == 'Q'
     assert obj.prob_inactive == 0.05
-    assert obj.src_file == 'Resources/81n_per_loc_and_bus.csv'
+    assert obj.src_file == 'resources/81n_per_loc_and_bus.csv'
     assert obj.outcomes_col == 'n_per_each_loc_bus_id'
 
-def test_gen_rand_periods_generate_periods():
+def test_GenRandPeriods_generate_periods():
     # Test generate_periods method (which are not random)
-    obj = gen_rand_periods(yml=yml['periods'])
+    obj = GenRandPeriods(yml=yml['periods'])
     periods = obj.generate_periods('2022-12-31', 6, 'Q')
     assert (periods.values == PeriodIndex(['2021Q3', '2021Q4', '2022Q1', '2022Q2', '2022Q3','2022Q4'],
             dtype='period[Q-DEC]')).all()
@@ -145,35 +150,41 @@ def test_gen_rand_periods_generate_periods():
 
 def test_date_n_periods_back():
     # Case with yml file ('Q')
-    obj = gen_rand_periods(yml=yml['periods'])
+    obj = GenRandPeriods(yml=yml['periods'])
     assert obj.date_n_periods_back(last_date='2022-12-31', n_back=3, freq='Q') == pd.Timestamp('2022-03-31')
+    
     # Case without yml file and monthly frequency
-    obj = gen_rand_periods(freq="M")
+    obj = GenRandPeriods(freq="M")
     assert obj.date_n_periods_back(last_date = '2022-11-30', n_back=15) == pd.Timestamp('2021-08-30')
 
 
 def test_get_sample():
     #Testing the generation of sample periods of random length
     # Case1: using yml as input (quarterly periods)
-    obj = gen_rand_periods(yml=yml['periods'])
+    obj = GenRandPeriods(yml=yml['periods'])
     obj.get_yml()
 
-    assert len(obj.get_sample())>=1
-    assert type(obj.get_sample()) == pd.core.indexes.period.PeriodIndex
-    assert obj.get_sample().freqstr == 'Q-DEC'
+    assert len(obj.get_sample()) >= 1, "Expected at least one period, it contains none."
+    assert type(obj.get_sample()) == pd.core.indexes.period.PeriodIndex, f"Expected an object of type PeriodIndex but it got {type(obj.get_sample())}"
+    assert obj.get_sample().freqstr == 'Q-DEC', f"Expected a quarterly frequency, but obtained {obj.get_sample().freqstr}"
 
     # Case2: using argumets other than yml as input, using monthly periods
     # Trying case of inactive firm, what it means that the last period ends before the last_date provided.
-    obj = gen_rand_periods(last_date='2022-12-31', max_nperiods_back = 40, 
+    obj = GenRandPeriods(last_date='2022-12-31', max_nperiods_back=40, 
                  freq='M', prob_inactive=1)
+
     # Object has at least one date
-    assert len(obj.get_sample())>=1
+    assert len(obj.get_sample()) >= 1
+
     # Object has PeriodIndex type
     assert type(obj.get_sample()) == pd.core.indexes.period.PeriodIndex
+
     # Object has frequency monthly
     assert obj.get_sample().freqstr == 'M'
+
     # Last period is before the last_date 
     assert obj.get_sample()[-1] < pd.Period('2022-12-31','M')
+
     # First period is 40 or less periods before the last period
     sample_index = obj.get_sample()
     end = sample_index[-1] 
@@ -183,11 +194,11 @@ def test_get_sample():
     
 
  ##############################################################
- #  TESTING PERIOD GENERATION - gen_random_proportions OBJECT #
+ #  TESTING PERIOD GENERATION -  GenRandomProportions  OBJECT #
  ##############################################################
-def test_gen_random_proportions():
-        # INIT METHOD - DEFAULT VALUES with YAML fiile
-    obj = gen_random_proportions(yml['deducs'])
+def test_GenRandomProportions():
+        # INIT METHOD - DEFAULT VALUES with YAML file
+    obj = GenRandomProportions(yml['deducs'])
 
     assert obj.yml == yml['deducs']
     assert obj.features_p == None
@@ -199,12 +210,13 @@ def test_gen_random_proportions():
     assert obj.export_csv == False
     assert obj.debug == False
     assert obj.include_agg == True
+
     #assert obj.always_non_neg == None
     assert obj.global_always_non_neg == True
 
-def test_gen_random_proportions_get_yml():
+def test_GenRandomProportions_get_yml():
     # Test get_yml method
-    obj = gen_random_proportions(yml=yml['deducs'])
+    obj = GenRandomProportions(yml=yml['deducs'])
     obj.get_yml()
 
     assert obj.features_p == {
@@ -232,7 +244,7 @@ def test_gen_random_proportions_get_yml():
     
 def test_get_sample():
     #Testing the generation of sample periods of random length
-    obj = gen_random_proportions(yml=yml['deducs'])
+    obj = GenRandomProportions(yml=yml['deducs'])
     obj.get_yml()
     deduc_df = obj.get_sample()
     
@@ -249,25 +261,22 @@ def test_normalize_rows():
     # Case of matrix with multiple columns
     # Include case 0 and non zero
     norm = np.array([[0, 0],[0.2, 0.2]])
-    assert (normalize_rows(norm) == np.array([[0,0],[0.5,0.5]])).all()
+    assert (normalize_rows(norm) == np.array([[0, 0], [0.5, 0.5]])).all()
     
     # Case with matrix of one dimention
     # Case all zero
-    assert (normalize_rows(norm[0]) == np.array([0,0])).all()
+    assert (normalize_rows(norm[0]) == np.array([0, 0])).all()
     
     # Caso non zero
-    assert (normalize_rows(norm[1]) == np.array([0.5,0.5])).all()
+    assert (normalize_rows(norm[1]) == np.array([0.5, 0.5])).all()
     
-
-    
-#@TODO check if the distributions generated are the ones it supose to be
     
  ####################################################
- #  TESTING MONEY  GENERATION - gen_money_ts OBJECT #
+ #  TESTING MONEY  GENERATION -  GenMoneyTS  OBJECT #
  ####################################################
 
-def test_gen_money_ts():
-    income = gen_money_ts(yml['income'])
+def test_GenMoneyTS():
+    income = GenMoneyTS(yml['income'])
     income.get_yml()
     income_df = income.get_sample()
     
@@ -277,16 +286,18 @@ def test_gen_money_ts():
     assert_frame_equal(round(income_df),income_df), "Numbers are not rounded to 2 decimals. It must since thisin money."
     
 
-  ######################################################################
+ ######################################################################
  #  TESTING OBJECT GENERATION AND POPULATION - ObjectGenerator OBJECT #
  ######################################################################
 def test_ObjectGenerator():
-    # Will try generating a distribution of deductions. 
+    # Will test the object generation by generating a distribution of deductions. 
     # Dataframe was created
     deducs = ObjectGenerator(yml=yml.get('deducs'), 
-                              class_name='gen_random_proportions', 
+                              class_name='GenRandomProportions', 
                               seed=seed, n=40)
+
     deducs_df = deducs.populate_object()
+
     assert isinstance(deducs_df, pd.DataFrame), f"Expected pd.DataFrame, but got {type(deducs_df)}"
     
     # Dataframe has content
@@ -294,7 +305,7 @@ def test_ObjectGenerator():
     
 
  ########################################################################
- #  TESTING ONE TIME SERIES RECORD GENERATION - gen_ts_records   OBJECT #
+ #  TESTING ONE TIME SERIES RECORD GENERATION - gen_ts_records FUNCTION #
  ########################################################################
 
 def test_gen_ts_record():
@@ -322,21 +333,21 @@ id_df = pd.DataFrame({'business_id':
                      })
 
 income_df = pd.DataFrame({'income': 
-                          [0, 1 , 10 , 100, 1000]
+                          [0.0, 1.0 , 10.0 , 100.0, 1000.0]
                          })
 
 efftax_aggdeduc_netinc_df = pd.DataFrame(    
     [
     [0.3, 0.33, 0.34],
-    [0,      0, 0   ],
-    [0,      1, 0   ],
-    [0.5,    0, 0.5 ],
-    [0.5,  0.5, 0   ]
+    [0.0,  0.0, 0.0 ],
+    [0.0,  1.0, 0.0 ],
+    [0.5,  0.0, 0.5 ],
+    [0.5,  0.5, 0.0 ]
     ],
-    columns= ['effect_tax_rate', 'agg_deduc', 'net_income']
+    columns=['effect_tax_rate', 'agg_deduc', 'net_income']
 )
 
-deducs_df =pd.DataFrame(
+deducs_df = pd.DataFrame(
     [
     [0.25, 0.25, 0.25, 0.25],
     [0.25, 0.25, 0.25, 0.25],
@@ -344,7 +355,7 @@ deducs_df =pd.DataFrame(
     [0.25, 0.25, 0.25, 0.25],
     [0.25, 0.25, 0.25, 0.25]
     ],
-    columns= ['deduc_1', 'deduc_2', 'deduc_16', 'deduc_17']
+    columns=['deduc_1', 'deduc_2', 'deduc_16', 'deduc_17']
 )
 
 raw_ts_objects = {'periods_index': periods_index, 
@@ -357,8 +368,8 @@ raw_ts_objects = {'periods_index': periods_index,
 transformed_df = pd.DataFrame({
 'period':[('2021Q4',),('2022Q1',),('2022Q2',),('2022Q3',),('2022Q4',)],
 'business_id': [999999, 999999, 999999, 999999, 999999],
-'income':      [0, 1 , 10 , 100, 1000],
-'tax_paid':    [0.0, 0.0,  0.0,   50.0,   500.0],
+'income':      [0.0, 1.0 , 10.0 , 100.0, 1000.0],
+'tax_paid':    [0.0, 0.0,  0.0,   50.0,  500.0],
 'agg_deduc':   [0.0, 0.0,  10.0,  0.0,   500.0],
 'deduc_1':     [0.0, 0.0,  1.0,   0.0,   125.0],
 'deduc_2':     [0.0, 0.0,  2.0,   0.0,   125.0],
@@ -367,22 +378,22 @@ transformed_df = pd.DataFrame({
 })
 transformed_df.set_index('period', inplace=True)
 transformed_df.index.name = None
-transformed_df.sort_index(ascending = False, inplace=True)
+transformed_df.sort_index(ascending=False, inplace=True)
    
      
 # Transformation test
 def test_transform_raw_ts_record():
-        assert_frame_equal(transform_raw_ts_record(raw_ts_objects),transformed_df)
+        assert_frame_equal(transform_raw_ts_record(raw_ts_objects), transformed_df)
     
 
  ######################################################################
- #  TESTING TIME SERIES DATASET GENERATION - gen_ts_dataset   OBJECT #
+ #  TESTING TIME SERIES DATASET GENERATION -   GenTSDataset    OBJECT #
  ######################################################################
-def test_gen_ts_dataset():
-    dataset_df = gen_ts_dataset(yml=yml, n_samples=5, seed=1, export_csv=True).get_dataset()
+def test_GenTSDataset():
+    dataset_df = GenTSDataset(yml=yml, n_samples=5, seed=1, export_csv=True).get_dataset()
     
     # count 5 distinct business ids
-    assert len(dataset_df['business_id'].unique())==5
+    assert len(dataset_df['business_id'].unique()) == 5
     
     # type is a dataframe
     assert isinstance(dataset_df, pd.DataFrame), f"Expected pd.DataFrame, but got {type(dataset_df)}"
