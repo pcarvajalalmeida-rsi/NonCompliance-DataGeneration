@@ -1,0 +1,9 @@
+income:
+# Income MVP
+    naics: 81
+    size: s
+    always_non_neg: True
+    distribution: normal
+    parameters:
+        mean: 250000
+        std: 100000

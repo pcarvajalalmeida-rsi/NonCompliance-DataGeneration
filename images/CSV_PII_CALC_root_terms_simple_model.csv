@@ -1,0 +1,161 @@
+﻿FieldText,isPII,isCalc
+account number,1,0
+acct number,1,0
+alien number,1,0
+alien registration number,1,0
+a-number,1,0
+bank account,1,0
+bank account number,1,0
+birth,1,0
+birth date,1,0
+birth place,1,0
+business,1,0
+business address,1,0
+cardholder's name,1,0
+city state zip,1,0
+credit card,1,0
+credit card number,1,0
+credit card number expiration date and CSV code,1,0
+criminal history,1,0
+CSV code,1,0
+date of birth,1,0
+debit card,1,0
+debit card number,1,0
+disability,1,0
+blind,1,0
+deaf,1,0
+autist,1,0
+driver license,1,0
+driver license number,1,0
+driver's license,1,0
+driver's license or passport number,1,0
+education,1,0
+employment history,1,0
+employment identification,1,0
+enter your social security number,1,0
+expiration date,1,0
+father name,1,0
+federal tax id number,1,0
+federal employer id,0,0
+federal employer id number,0,0
+financial account number,1,0
+fingerprints,1,0
+firm,1,0
+firm address,1,0
+firm name,1,0
+first and last name,1,0
+first middle and last name,1,0
+first name,1,0
+full name,1,0
+home address,1,0
+individual taxpayer identification number,1,0
+internet protocol,1,0
+ip address,1,0
+itin,1,0
+last name,1,0
+mac,1,0
+maiden name,1,0
+media access control,1,0
+medical history,1,0
+medical records,1,0
+middle name,1,0
+mother maiden name,1,0
+mother name,1,0
+name and date of birth,1,0
+name of the cardholder,1,0
+parent name,1,0
+passport,1,0
+passport number,1,0
+password,1,0
+patient identification number,1,0
+personal account number,1,0
+personal address,1,0
+personal e-mail,1,0
+personal identification number,1,0
+personal information,1,0
+personal phone number,1,0
+place of birth,1,0
+race,1,0
+religion,1,0
+retina scan,1,0
+sibling name,1,0
+signature,1,0
+social security identification number,1,0
+social security number,1,0
+social security number or driver's license,1,0
+social security benefit,0,0
+social security amount,0,0
+ssn,1,0
+SSN,1,0
+ssn or id,1,0
+state identification number,1,0
+taxpayer identification number,1,0
+vehicle registration number,1,0
+voice signature,1,0
+weight,1,0
+line,0,0
+box(es),0,0
+brand name,0,0
+business registered name,0,0
+check box,0,0
+check the box,0,0
+check this box,0,0
+checkbox,0,0
+corp,0,0
+corp address,0,0
+corp email,0,0
+corp name,0,0
+corporation,0,0
+corporation account number,0,0
+corporation address,0,0
+corporation email,0,0
+corporation name,0,0
+corporation officer name,0,0
+corporation's,0,0
+doing business as,0,0
+ein,0,0
+ein address,0,0
+ein name,0,0
+employer,0,0
+employer identification number,0,0
+federal employer identification number,0,0
+inc,0,0
+k-120,0,0
+llc,0,0
+llet,0,0
+office,0,0
+registered name,0,0
+trademark,0,0
+Y or N,0,0
+Y/N,0,0
+yes,0,0
+yes or no,0,0
+26% of the line 54,0,1
+5% of the line 23,0,1
+add lines 1; 2 and 3,0,1
+add lines 12 and 27 ,0,1
+divided by 3,0,1
+divided by the number of years,0,1
+multiplied by 2,0,1
+multiplied by the number of years,0,1
+multiply by 4,0,1
+multiply line by the number of days,0,1
+percentage of line 34,0,1
+percentage of line 50,0,1
+substract line 28 from line 60,0,1
+substract the result from line 8 ,0,1
+subtract from line 33,0,1
+subtract from line 4,0,1
+sum line 5 to line 8,0,1
+sum of lines 7 and 23,0,1
+title of,0,0
+type of,0,0
+apartment,1,0
+apt.,1,0
+officer signature,1,0
+spouse signature,1,0
+person signature,1,0
+foreign country name,1,0
+routing number,0,0
+total,0,1
+sum,0,1

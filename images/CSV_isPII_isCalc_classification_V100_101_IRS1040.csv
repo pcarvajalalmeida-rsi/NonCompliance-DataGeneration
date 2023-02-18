@@ -1,0 +1,1349 @@
+FieldText,isPII,isCalc
+taxable year ending - month day year,0,0
+taxable year beginning - month and day,0,0
+name,1,0
+part b business activity code - naics,0,0
+ein this entity - employer's identification number,0,0
+number and street of principle office,0,0
+part c date business began in kansas - month day year,0,0
+zip code,1,0
+city,1,0
+state abbreviation,1,0
+ein federal consolidated parent - employer's identification number(s),0,0
+part d date business discontinued in kansas - month day year,0,0
+part e month / year of incorporation - month year,0,0
+part e state of incorporation - abbreviation,0,0
+part a1 activity wholly within kanss - single entity,0,0
+part a2 activity wholly within kanss - consolidated,0,0
+part l enter your original federal due date of other than the 15th day of the 3rd month after the end of the tax year - month day year,0,0
+part f state of commercial domicile - abbreviation,0,0
+part a3 single entity apportionment method - k-120as,0,0
+part a4 combined income method - single corporation filing k-121,0,0
+part a5 combined income method - multiple corporation filing k-121,0,0
+part g type of federal return filed - 2 consolidated,0,0
+part g type of federal return filed - 1 separate,0,0
+part a6 year qualified,0,0
+part a6 qualified elective two-factor k-120as,0,0
+part a7 common carrier mileage - enclose mileage apportionment schedule,0,0
+part j if any taxpayer information has changed since the last return was filed please check this box,0,0
+part h check the box if you have submitted a kansas form k-120el,0,0
+part a8 alternative or separate accounting - enclose letter of authorization and schedule,0,0
+mark this box if you are filing this as an amended 2014 kansas return,0,0
+amending reason - amended federal tax return,0,0
+amending reason - amended affects kansas only,0,0
+amending reason - adjustment by the irs,0,0
+1 federal taxable income,0,0
+2 total state and municipal interest,0,0
+3 taxes on or measured by income or fees or payments in lieu of income taxes - part iv line2,0,1
+4 federal net operating loss deduction,0,0
+7 other additions to federal taxable income - schedule required,0,0
+8 total additions to federal taxable income - add lines 2 - 7,0,1
+9 interest on us government obligations - part v line 2,0,1
+10 irc section 78 and 80% of foreign dividends - schedule required,0,0
+15 other subtractions from federal taxable income - schedule required,0,0
+16 total subtractions from federal taxable income - add lines 9 - 15,0,1
+17 net income before apportionment - add line 1 to line 8 then subtract line 16,0,1
+18 nonbusiness income - total company - schedule required,0,0
+19 apportionable business income - subtract line 18 from line 17,0,1
+20c average percent to kansas - part vi line c; if 100% enter 100.0000,0,1
+20a average percent to kansas - part vi line a; if 100% enter 100.0000,0,1
+20b average percent to kansas - part vi line b; if 100% enter 100.0000,0,1
+20 average percent to kansas - if 100% enter 100.0000,0,0
+21 amount to kansas - multiply line 19 by line 20,0,1
+22 nonbusiness income - kansas - schedule required,0,0
+23 kansas expensing recapture,0,0
+24 kansas expensing deduction,0,0
+25 kansas net income before nol deduction - add lines 21 - 23 then subtract line 24,0,1
+26 kansas net operating loss deduction - schedule required,0,0
+27 combined report k-121 or alternative/separate accounting income - separate schedule,0,0
+28 kansas taxable income - subtract liine 26 from line 25 or enter line 27,0,1
+29 normal tax - 4% of line 28,0,1
+30 surtax - 3% of line 28 in excess of $50;000,0,1
+32 total nonrefundable credits - part l line 30; cannot exceed amount on line 31,0,1
+33 balance - subtract 32 from line 31; cannot be less than zero,0,1
+34 estimated tax paid and amount credited forward - part ll line 4,0,1
+35 other tax payments - enclose separate schedule,0,0
+36 amount paid with kansas extension,0,0
+37 total of all other refundable credits - part l line 37,0,1
+38 payment remitted with original return,0,0
+39 overpayment from original return - this figure is a subtraction,0,0
+40 total prepaid credits - add lines 34 - 38 and subtract line 39,0,1
+41 balance due - if line 33 exceeds line 40 subtract from line 33,0,1
+42 interest,0,0
+43 penalty,0,0
+44 estimated tax penalty,0,0
+44 if annualizing to compute penalty check this box,0,0
+45 total tax; interest and penalty due - add lines 41 - 44; complete form k-120v and enclose it with your payment,0,1
+46 overpayment - if line 33 plus line 44 is less than line 40 subtract the sum of lines 33 and 44 from line 40,0,1
+47 refund - enter the amount of line 46 you wish to be refunded,0,0
+48 credit forward - enter the amount of line 46 (original return only) you wish to be applied to 2022 estimated tax; line 48 cannot exceed the total of lines 34 - 36,0,0
+i authorize the director of taxation or the directors designee to discuss my k-120 and enclosures with my preparer,0,0
+signature of officer,1,0
+title of officer,0,0
+date,0,0
+individual or firm signature of preparer,1,0
+address and phone number of preparer,1,0
+date2,0,0
+tax preparers ein or ssn,1,0
+part l - 1 center for entrepreneurship credit - enclose k-31,0,0
+part l - 2 agritourism liability insurance credit - enclose k-33,0,0
+part l - 3 business and job development credit - enclose k-34 - for carry forward only,0,0
+part l - 4 historic preservation credit - enclose k-35,0,0
+part l - 5 disabled access credit - enclose k-37,0,0
+part l - 6 swine facility improvement credit - enclose k-38,0,0
+part l - 7 oil and gas well plugging credit - enclose k-39,0,0
+part l - 8 assistive technology contribution credit - enclose k-42,0,0
+part l - 9. eisenhower foundation credit (enclose schedule k-43),0,0
+part l - 10 purchases from qualified vendor credit - enclose k-44,0,0
+part l - 11. friends of cedar crest association credit (enclose schedule k-46),0,0
+part l - 12 qualified charitable distribution credit (enclose schedule k-48),0,0
+part l - 13 research and development credit - enclose k-53,0,0
+part l - 14 venture capital credit - enclose k-55 - for carry forward only,0,0
+part l - 15 seed capital credit - enclose k-55 - for carry forward only,0,0
+part l - 16 high performance incentive program credit - enclose k-59,0,0
+part l - 17 community service contribution credit - enclose k-60,0,0
+part l - 18 alternative-fuel motor vehicle property credit - enclose k-62,0,0
+part l - 19 low income student scholarship credit - enclose k-70,0,0
+part l - 20 law enforcement training center credit - enclose k-72 - for carry forward only,0,0
+part l - 21 petroleum refinery credit - enclose k-73 - for carry forward only,0,0
+part l - 22 kansass national guard and reserve employer credit - enclose k-74,0,0
+part l - 23 single city port authority credit - enclose k-76,0,0
+part l - 24 qualifying pipeline credit - enclose k-77 - for carry forward only,0,0
+part l - 25 biomass-to-energy credit - enclose k-79 - for carry forward only,0,0
+part l - 26 environmental compliance credit - enclose k-81,0,0
+part l - 27 storage and blending equipment credit - enclose k-82 - for carry forward only,0,0
+part l - 28 electric cogeneration facility credit - enclose k-83 - for carry forward only,0,0
+part l - 29 farm net operating loss - enclose k-139f,0,0
+part l - 30 total nonrefunadable credits - add lines 1 - 29; enter here and on line 32 page 2,0,1
+part l - 31 telecummonications and railroad credit - enclose k-36,0,0
+part l - 32 child day care assistance credit - enclose k-56,0,0
+part l - 33 small empoyer healthcare credit - enclose k-57,0,0
+part l - 34 community service contribution credit - enclose k-60,0,0
+part l - 35 individual development account credit - enclose k-68,0,0
+part l - 36 farm net operating loss - enclose k-139f,0,0
+part l - 37 total refundable credits - add lines 31 - 36; enter here and on line 37 page 2,0,1
+part ll 1 did the corporation file a kansas income tax return under the same name for the preceding year - yes,0,0
+part ll 1 did the corporation file a kansas income tax return under the same name for the preceding year - no,0,0
+part ll 1 if no; enter previous name,0,0
+part ll 6 if this is a final return for kansas state the reason; if the corporation was liquidated or dissolved state the irc section under which the corporation was liquidated; contd,0,0
+part ll 1 if no; enter previous name2,0,0
+part ll 1 if no; enter previous ein,0,0
+part ll 2 enter the address of the corpations principal location in kansas - street address,0,0
+part ll 2 enter the address of the corpations principal location in kansas - city state zip code,0,0
+part ll 3 the corporations books are in care of - name,1,0
+part ll 7 if your federal taxable income has been determined for any prior years that have not previously been reported to kansas check the applicable box(es) below - revenue agents report,0,0
+part ll 7 if your federal taxable income has been determined for any prior years that have not previously been reported to kansas check the applicable box(es) below - net operating loss,0,0
+part ll 3 the corporations books are in care of - street address,1,0
+part ll 7 if your federal taxable income has been determined for any prior years that have not previously been reported to kansas check the applicable box(es) below - amended return,0,0
+part ll 3 the corporations books are in care of - city state zip code,1,0
+part ll 7 if your federal taxable income has been determined for any prior years that have not previously been reported to kansas check the applicable box(es) below - state the calendar; fiscal or short period year ending date,0,0
+part ll 3 the corporations books are in care of - telephone number,1,0
+part ll 8 if you are registered with the kansas department of revenue under any other kansas tax act enter all registration or license numbers on the applicable line - a sales tax,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - date,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - amount,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - date 4,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - amount 4,0,0
+part ll 8 if you are registered with the kansas department of revenue under any other kansas tax act enter all registration or license numbers on the applicable line - b compensating use tax,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - date 2,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - amount 2,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - date 5,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - amount 5,0,0
+part ll 8 if you are registered with the kansas department of revenue under any other kansas tax act enter all registration or license numbers on the applicable line - c withholding tax,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - date 3,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - amount 3,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - date 6,0,0
+part ll 4 list each estimated tax payment and credit forward amount claimed on this return - amount 6,0,0
+part ll 8 if you are registered with the kansas department of revenue under any other kansas tax act enter all registration or license numbers on the applicable line - d other; specify,0,0
+part ll 8 if you are registered with the kansas department of revenue under any other kansas tax act enter all registration or license numbers on the applicable line - d other; specify contd,0,0
+5 has your corporation been involved in any reorganization during the period covered by this return - no,0,0
+5 has your corporation been involved in any reorganization during the period covered by this return - yes,0,0
+part ll 8 if you are registered with the kansas department of revenue under any other kansas tax act enter all registration or license numbers on the applicable line - d other; specify contd 2,0,0
+part lll name of corporation,0,0
+part lll employer id number,0,0
+part lll name of corporation 2,0,0
+part lll employer id number 2,0,0
+part lll employer id number 3,0,0
+part lll name of corporation 3,0,0
+part iv 1 taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize - amount,0,0
+part iv 1 taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize,0,0
+part iv 1 taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize - amount 2,0,0
+part iv 1 taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize 2,0,0
+part iv 1 taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize - amount 3,0,0
+part iv 1 taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize 3,0,0
+taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize - amount 4,0,0
+taxes on or measured byb income or fees pr payments in lieu of income taxes include federal environmental tax; itemize 4,0,0
+part iv 2 total - enter on line 3 page 1,0,0
+part iv 3 total other taxes,0,0
+part iv 4 total taxes - must equal line 17 on the federal return,0,0
+part iv 1 us interest income - describe type,0,0
+part iv 1 us interest income - amount,0,0
+part iv 1 us interest income - amount 2,0,0
+part iv 1 us interest income - describe type 2,0,0
+part iv 1 us interest income - amount 3,0,0
+part iv 1 us interest income - describe type 3,0,0
+part iv 1 us interest income - amount 4,0,0
+part iv 1 us interest income - describe type 4,0,0
+part iv 2 total enter on line 7 page 1,0,1
+part iv 3 total other interest income,0,0
+part iv 4 total interest income - must equal line 5 of the federal return,0,1
+name as shown on form k-120,0,0
+part vi a (1) inventory - total company - end of year,0,0
+part vi a (1) inventory - within kansas - beginning of year,0,0
+part vi a (1) inventory - total company - beginning of year,0,0
+part vi a (1) inventory - within kansas - end of year,0,0
+part vi a (1) depreciable assets - within kansas - end of year,0,0
+part vi a (1) depreciable assets - total company - end of year,0,0
+part vi a (1) depreciable assets - total company - beginning of year,0,0
+part vi a (1) depreciable assets - within kansas - beginning of year,0,0
+part vi a (1) land - total company - beginning of year,0,0
+part vi a (1) land - within kansas - beginning of year,0,0
+part vi a (1) land - within kansas - end of year,0,0
+part vi a (1) land - total company - end of year,0,0
+part vi a (1) other tangible assets - within kansas - beginning of year - enclose schedule,0,0
+part vi a (1) other tangible assets - total company - end of year - enclose schedule,0,0
+part vi a (1) other tangible assets - within kansas - end of year - enclose schedule,0,0
+part vi a (1) other tangible assets - total company - beginning of year - enclose schedule,0,0
+part vi a (1) less: construction in progress - within kansas - end of year,0,0
+part vi a (1) less: construction in progress - total company - end of year,0,0
+part vi a (1) less: construction in progress - within kansas - beginning of year,0,0
+part vi a (1) less: construction in progress - total company - beginning of year,0,0
+part vi a (1) total property to be averaged - total company - end of year,0,1
+part vi a (1) total property to be averaged - total company - beginning of year,0,1
+part vi a (1) total property to be averaged - within kansas - end of year,0,1
+part vi a (1) total property to be averaged - within kansas - beginning of year,0,1
+part vi a (1) average owned property: beg + end divided by 2 - total company - end of year,0,1
+part vi a (1) average owned property: beg + end divided by 2 - within kansas - end of year,0,1
+part vi a (2) net annual rented property; multipled by 8 - within kansas - end of year,0,0
+part vi a (2) net annual rented property; multipled by 8 - total company - end of year,0,0
+part vi a (2) total property - total company - end of year,0,0
+part vi a (2) total property - within kansas - end of year,0,0
+part vi a (2) total property; enter on line 14a page 1 - percent within kansas,0,0
+part vi b (1) compensation of officers - within kansas,0,0
+part vi b (1) compensation of officers - total company,0,0
+part vi b (2) wages; salaries and commissions - total company,0,0
+part vi b (2) wages; salaries and commissions - within kansas,0,0
+part vi b (3) payroll expense included in cost of goods sold - within kansas,0,0
+part vi b (3) payroll expense included in cost of goods sold - total company,0,0
+part vi b (4) payroll expense incldued in repairs - within kansas,0,0
+part vi b (4) payroll expense incldued in repairs - total company,0,0
+part vi b (5) other wages and salaries - within kansas,0,0
+part vi b (5) other wages and salaries - total company,0,0
+part vi b (5) total payroll - within kansas,0,0
+part vi b (5) total payroll - total company,0,0
+part vi b (5) total payroll; enter on line 14b page 1 - percent within kansas,0,0
+part vi c sales; gross receipts; less returns and allowances - total company,0,0
+part vi c (1)(a) shipped from outside kansas - within kansas,0,0
+part vi c (1)(b) shipped from inside kansas - within kansas,0,0
+part vi c (2)(a) the united states government - within kansas,0,0
+part vi c (2)(b) purchasers in a state where the taxpayer would not be taxable - within kansas,0,0
+part vi c (3) dividends - within kansas,0,0
+part vi c (3) dividends - total company,0,0
+part vi c (3) interest - within kansas,0,0
+part vi c (3) interest - total company,0,0
+part vi c (3) rents - total company,0,0
+part vi c (3) rents - within kansas,0,0
+part vi c (3) royalties - within kansas,0,0
+part vi c (3) royalties - total company,0,0
+part vi c (3) gains/losses from intangible asset sales - within kansas,0,0
+part vi c (3) gains/losses from intangible asset sales - total company,0,0
+part vi c (3) gross proceeds from tangible asset sales - within kansas,0,0
+part vi c (3) gross proceeds from tangible asset sales - total company,0,0
+part vi c (3) other income/enclose schedule - within kansas,0,0
+part vi c (3) other income/enclose schedule - total company,0,0
+part vi c (3) total sales - within kansas,0,0
+part vi c (3) total sales; enter on line 14c page 1 - percent within kansas,0,0
+part vi c (3) total sales - total company,0,0
+part vi d (1) total percent - sum of lines a; b; and c if qualified and utilizing three-factor formula - percent within kansas,0,1
+part vi d (2) total percent - sum of lines a and c if qualified and utilizing two-factor formula - percent within kansas,0,1
+part vii 2b has any state determined this corp conducts or has conducted a unitary business with any other corp - yes,0,0
+part vii 2b has any state determined this corp conducts or has conducted a unitary business with any other corp - no,0,0
+part vii 1 does part vi inldue all sales delievered from kansas to the us gov and states,0,0
+part vii 1 if not explain,0,0
+part vii 3 describe biefly the nature and location(s) of your kansas business activities,0,0
+part vii 1 if not explain; contd,0,0
+part vii 3 describe biefly the nature and location(s) of your kansas business activities cont,0,0
+part vii 4 are the amounts in the total company column the same as those reported in returns/reports to other states - yes,0,0
+part vii 4 are the amounts in the total company column the same as those reported in returns/reports to other states - no,0,0
+part vii 4 are the amounts in the total company column the same as those reported in returns/reports to other states - explain,0,0
+part viii within kansas factors,0,0
+part viii in total company factors,0,0
+part viii name of corporation,0,0
+part viii employer ein,0,0
+part viii in total company factors2,0,0
+part viii name of corporation2,0,0
+part viii within kansas factors2,0,0
+part viii employer ein2,0,0
+part viii in total company factors3,0,0
+part viii within kansas factors3,0,0
+part viii name of corporation 3,0,0
+part viii employer ein3,0,0
+part viii within kansas factors4,0,0
+part viii in total company factors4,0,0
+part viii name of corporation4,0,0
+part viii employer ein4,0,0
+part viii within kansas factors5,0,0
+part viii in total company factors5,0,0
+part viii name of corporation5,0,0
+part viii employer ein5,0,0
+part viii in total company factors6,0,0
+part viii within kansas factors6,0,0
+part viii name of corporation6,0,0
+part viii employer ein6,0,0
+part viii within kansas factors7,0,0
+part viii in total company factors7,0,0
+part viii name of corporation7,0,0
+part viii employer ein7,0,0
+part viii in total company factors8,0,0
+part viii name of corporation8,0,0
+part viii within kansas factors8,0,0
+part viii employer ein8,0,0
+1. pass-through entity name,0,0
+1. ein of pass-through entity,0,0
+1. your entity to which income of pass-through is included,0,0
+1. ein to which income of pass-through entity is included,0,0
+1. principal product or services of pass-through entity,0,0
+1. kansas operations - y or n,0,0
+2. pass-through entity name,0,0
+2. ein of pass-through entity,0,0
+2. your entity to which income of pass-through is included,0,0
+2. ein to which income of pass-through entity is included,0,0
+2. principal product or services of pass-through entity,0,0
+2. kansas operations - y or n,0,0
+3. pass-through entity name,0,0
+3. ein of pass-through entity,0,0
+3. your entity to which income of pass-through is included,0,0
+3. ein to which income of pass-through entity is included,0,0
+3. principal product or services of pass-through entity,0,0
+3. kansas operations - y or n,0,0
+4. principal product or services of pass-through entity,0,0
+4. ein to which income of pass-through entity is included,0,0
+4. ein of pass-through entity,0,0
+4. kansas operations - y or n,0,0
+4. your entity to which income of pass-through is included,0,0
+4. pass-through entity name,0,0
+5. pass-through entity name,0,0
+5. ein of pass-through entity,0,0
+5. ein to which income of pass-through entity is included,0,0
+5. principal product or services of pass-through entity,0,0
+5. kansas operations - y or n,0,0
+5. your entity to which income of pass-through is included,0,0
+6. pass-through entity name,0,0
+6. ein of pass-through entity,0,0
+6. your entity to which income of pass-through is included,0,0
+6. ein to which income of pass-through entity is included,0,0
+6. principal product or services of pass-through entity,0,0
+6. kansas operations - y or n,0,0
+7. kansas operations - y or n,0,0
+7. your entity to which income of pass-through is included,0,0
+7. ein to which income of pass-through entity is included,0,0
+7. pass-through entity name,0,0
+7. ein of pass-through entity,0,0
+7. principal product or services of pass-through entity,0,0
+8. kansas operations - y or n,0,0
+8. principal product or services of pass-through entity,0,0
+8. ein to which income of pass-through entity is included,0,0
+8. ein of pass-through entity,0,0
+8. your entity to which income of pass-through is included,0,0
+8. pass-through entity name,0,0
+1. disregarded entity name,0,0
+1. ein of disregarded entity,0,0
+1. your entity to which income of disregarded is included,0,0
+1. ein to which income of disregarded entity is included,0,0
+1. principal product or services of disregarded entity,0,0
+1. kansas operations - y or no,0,0
+2. disregarded entity name,0,0
+2. ein of disregarded entity,0,0
+2. your entity to which income of disregarded is included,0,0
+2. ein to which income of disregarded entity is included,0,0
+2. principal product or services of disregarded entity,0,0
+2. kansas operations - y or no,0,0
+3. disregarded entity name,0,0
+3. ein of disregarded entity,0,0
+3. your entity to which income of disregarded is included,0,0
+3. ein to which income of disregarded entity is included,0,0
+3. principal product or services of disregarded entity,0,0
+3. kansas operations - y or no,0,0
+4. ein to which income of disregarded entity is included,0,0
+4. ein of disregarded entity,0,0
+4. principal product or services of disregarded entity,0,0
+4. kansas operations - y or no,0,0
+4. your entity to which income of disregarded is included,0,0
+4. disregarded entity name,0,0
+5. disregarded entity name,0,0
+5. ein of disregarded entity,0,0
+5. ein to which income of disregarded entity is included,0,0
+5. principal product or services of disregarded entity,0,0
+5. kansas operations - y or no,0,0
+5. your entity to which income of disregarded is included,0,0
+6. disregarded entity name,0,0
+6. ein of disregarded entity,0,0
+6. your entity to which income of disregarded is included,0,0
+6. ein to which income of disregarded entity is included,0,0
+6. principal product or services of disregarded entity,0,0
+6. kansas operations - y or no,0,0
+7. kansas operations - y or no,0,0
+7. your entity to which income of disregarded is included,0,0
+7. ein to which income of disregarded entity is included,0,0
+7. disregarded entity name,0,0
+7. ein of disregarded entity,0,0
+7. principal product or services of disregarded entity,0,0
+8. kansas operations - y or no,0,0
+8. principal product or services of disregarded entity,0,0
+8. ein to which income of disregarded entity is included,0,0
+8. ein of disregarded entity,0,0
+8. your entity to which income of disregarded is included,0,0
+8. disregarded entity name,0,0
+end date,0,0
+begin date,0,0
+720 fein,0,0
+720 ky corp llet acct#,0,0
+720 sec allet nonfiling stat code 2,0,0
+720 sec allet nonfiling stat code 1,0,0
+720 change of name checkbox,0,0
+corp name,0,0
+tax year end,0,0
+number and street,1,0
+sec b inc nonfiling stat code 1 ,0,0
+sec b inc nonfiling stat code 2 ,0,0
+sec b check box elective consolidated,0,0
+state,1,0
+phone,1,0
+720 state of incorp,0,0
+720 date of incorp,0,0
+720 sec c amended checkbox,0,0
+720 sec f name of common parent,0,0
+720 sec f ky corp llet acct num,0,0
+principal business activity,0,0
+sec c amended r a r check box ,0,0
+sec g check box initial return,0,0
+sec g check box short period return,0,0
+720 sec g checkbox change of accting period,0,0
+sec g check box final return,0,0
+sec h 3 factor code,0,0
+720 naics code num,0,0
+720 part 1 line 1,0,0
+720 part 2 line 1,0,0
+720 part 2 line 2,0,0
+720 part 1 line 2,0,0
+720 part 2 line 3,0,0
+720 part 1 line 3,0,0
+720 part 2 line 4,0,0
+720 part 1 line 4,0,0
+720 part 1 line 5,0,0
+720 part 2 line 5,0,0
+720 part 2 line 6,0,0
+720 part 1 line 6,0,0
+720 part 1 line 7,0,0
+720 part 2 line 7,0,0
+720 part 1 line 8,0,0
+720 part 1 line 9,0,0
+720 part 2 line 8,0,0
+720 part 1 line 10,0,0
+720 part 2 line 9,0,0
+720 part 1 line 11,0,0
+720 part 2 line 10,0,0
+720 part 1 line 12,0,0
+720 part 2 line 11,0,0
+720 part 1 line 13,0,0
+720 part 2 line 12,0,0
+720 part 1 line 14,0,0
+720 part 2 line 13,0,0
+720 part 1 line 15,0,0
+720 part 2 line 14,0,0
+720 part 1 line 16,0,0
+720 part 2 line 15,0,0
+720 part 1 line 17,0,0
+720 part 2 line 16,0,0
+720 part 2 line 17,0,0
+720 part 1 line 18,0,0
+720 part 2 line 18,0,0
+720 part 2 cents line 18,0,0
+720 part 1 cents line 19,0,0
+720 part 1 line 19,0,0
+720 part 2 cents line 19,0,0
+720 part 2 line 19,0,0
+720 part 1 line 20,0,0
+720 part 1cents line 20,0,0
+720 part 1 line 21,0,0
+720 part 2 line 20,0,0
+720 part 1 line 22,0,0
+720 part 1 cents line 22,0,0
+720 spart 2 line 21,0,0
+720 part 2 cents line 21,0,0
+720 tax summary llet line 1,0,0
+720 taxsummaryincome line 1,0,0
+720 tax summary llet line 2,0,0
+720 taxsummaryincome line 2,0,0
+720 tax summary llet line 3,0,0
+720 taxsummaryincome line 3,0,0
+720 tax summary llet line 4,0,0
+720 taxsummaryincome line 4,0,0
+720 tax summary total payment,0,0
+720 part 3 line 12,0,0
+720 part 3 line 1,0,0
+720 part 3 line 13,0,0
+720 part 3 line 14,0,0
+720 part 3 line 2,0,0
+720 part 3 line 15,0,0
+720 part 3 line 16,0,0
+720 part 3 line 3,0,0
+720 part 3 line 4,0,0
+720 part 3 line 17,0,0
+720 part 3 line 5,0,0
+720 part 3 line 6,0,0
+720 part 3 line 18,0,0
+720 part 3 line 7,0,0
+720 part 3 line 8,0,0
+720 part 3 line 9,0,0
+720 part 3 line 19,0,0
+720 part 3 line 10,0,0
+720 part 3 line 20,0,0
+720 part 3 line 11,0,0
+720 part 4 check box ceased operationin ky,0,0
+720 part 4 check box change in filing status,0,0
+720 part 4 check box change in ownership,0,0
+720 part 4 check box merger,0,0
+720 part 4 check box successorto previous business,0,0
+part 4 check box other,0,0
+720 s part 4 text other,0,0
+part 5 text explanation,0,0
+officer info changed check box no,0,0
+officer info changed check box yes,0,0
+presidents home address 1 ,1,0
+presidents name,1,0
+presidents home address 2 ,1,0
+720 presidents ssn,1,0
+presidents home address 3 ,1,0
+date became president,1,0
+officer date return signed,0,0
+officer name,0,0
+officer title,0,0
+preparer date return signed,0,0
+preparer or firm name preparing return,1,0
+preparer id number,1,0
+720 dor discussion check box yes,0,0
+email address,1,0
+720 dor discussion check box no,0,0
+720 q#8 check box yes,0,0
+720 q#8 check box no,0,0
+720 q#8 line 1 voting stock ,0,0
+720 q#8 line 2 voting stock ,0,0
+720 q#1 (a) check box new business,0,0
+720 q#1 (b) check box successor,0,0
+720 q#8 line 3 voting stock ,0,0
+720 q#1 (1) check box corp,0,0
+720 q#1 (3) check box sole prop,0,0
+720 q#1 (2) check box partnership,0,0
+720 q#1 (4) check box other,0,0
+720 q#1 (4) text box other,0,0
+720 q#9 check box yes,0,0
+720 q#9 check box no,0,0
+720 q#9 line 1 voting stock owner,0,0
+720 q#9 line 2 voting stock owner,0,0
+720 q#1 line 1 previously existing business,0,0
+720 q#9 line 3 voting stock owner,0,0
+720 q#1 line 2 previously existing business,0,0
+720 q#10 check box pro forma,0,0
+720 q#10 check box copy of federal return,0,0
+720 q#2 foreign corp ky start date,0,0
+720 q#11 check box no,0,0
+720 q#11 check box yes,0,0
+q# 3 sec of state acct#,0,0
+720 q#11 line 1 limited coop assoc,0,0
+q# 3 employer wh acct#,0,0
+720 q#11 line 2 limited coop assoc,0,0
+q# 3 sales use permit acct#,0,0
+720 q#11 line 3 limited coop assoc,0,0
+720 q#3 consumer use tax acct #,1,0
+720 q#3 unemployment ins acct #,1,0
+720 q#3 coal sev process tax acct #,1,0
+720 q#12 check box yes organized as trust,0,0
+720 q#12 check box no organized as trust,0,0
+720 q#4 line 1 books in care of,1,0
+720 q#4 line 2 books in care of,1,0
+720 q#4 line 3 books in care of,1,0
+720 q#12 check box no statutory trust,0,0
+720 q#12 check box yes statutory trust,0,0
+720 q#5 check box yes,0,0
+720 q#5 check box no,0,0
+720 q#12 line 1 trust info,0,0
+720 q#5 line 1 disregarded entities ,0,0
+720 q#12 line 2 trust info,0,0
+720 q#5 line 2 disregarded entities ,0,0
+720 q#12 line 3 trust info,0,0
+720 q#5 line 3 disregarded entities ,0,0
+720 q#12 line 4 trust info,0,0
+720 q#5 line 4 disregarded entities ,0,0
+720 q#13 check box cash basis,0,0
+720 q#13 check box accrual basis,0,0
+720 q#5 line 5 disregarded entities ,0,0
+720 q#13 check box other,0,0
+720 q#13 text box other,0,0
+720 q#5 line 6 disregarded entities,0,0
+720 q#5 line 7 disregarded entities,0,0
+720 q#5 line 8 disregarded entities,0,0
+720 q#14 check box no tangible personal prop tax,0,0
+720 q#14 check box yes tangible personal prop tax,0,0
+720 q#5 line 9 disregarded entities,0,0
+720 q#5 line 10 disregarded entities,0,0
+720 q#14 line 1 tangible personal prop tax return info,0,0
+720 q#14 line 2 tangible personal prop tax return info,0,0
+720 q#6 (a) check box yes,0,0
+720 q#6 (a) check box no,0,0
+720 q#14 line 3 tangible personal prop tax return info,0,0
+720 q#14 line 4 tangible personal prop tax return info,0,0
+720 q#6 (a) line 1 pass through entity,0,0
+720 q#14 line 5 tangible personal prop tax return info,0,0
+720 q#6 (a) line 2 pass through entity,0,0
+720 q#14 line 6 tangible personal prop tax return info,0,0
+720 q#6 (a) line 3 pass through entity,0,0
+720 q#14 line 7 tangible personal prop tax return info,0,0
+720 q#6 (a) line 4 pass through entity,0,0
+720 q#6 (a) line 5 pass through entity,0,0
+720 q#6 (a) line 6 pass through entity,0,0
+720 q#6 (a) line 7 pass through entity,0,0
+720 q#6 (a) line 8 pass through entity,0,0
+720 q#15 check box yes under irs audit,0,0
+720 q#15 check box no under irs audit,0,0
+720 q#6 (a) line 9 pass through entity,0,0
+720 q#15text box years under irs audit,0,0
+720 q#6 (b) check box no,0,0
+720 q#6 (b) check box yes,0,0
+720 q#15 check box yes irs adjustments,0,0
+720 q#7 check box yes,0,0
+720 q#7 check box no,0,0
+sch l check box ,0,0
+llet sec a col a line 1a,0,0
+llet sec a col b line 1a,0,0
+llet sec a col a line 2,0,0
+llet sec a col b line 2,0,0
+llet sec a col a line 3a,0,0
+llet sec a col b line 3a,0,0
+llet ksec a col a line 4,0,0
+llet ksec a col b line 4,0,0
+llet sec a col a line 5,0,0
+llet sec a col b line 5,0,0
+llet sec b line 1,0,0
+llet sec b line 2,0,0
+llet sec b line 3,0,0
+llet secc line 1,0,0
+llet secc line 2,0,0
+llet secc line 3,0,0
+llet secd line 1,0,0
+deceased ind spouse,0,0
+deceased ind taxpayer,0,0
+beginning date,0,0
+ending date,0,0
+740 spouse ssn,1,0
+740 primary ssn,1,0
+740 name,1,0
+street address 2 ,1,0
+city state zip,1,0
+filing status,0,0
+amended check box ,0,0
+pol party spouse,1,0
+740 pol party tp,1,0
+sfs 4 spouse name,1,0
+740 line 5a,0,0
+740 line 5b,0,0
+740 line 6a,0,0
+740 line 6b,0,0
+740 line 7a,0,0
+740 line 7b,0,0
+740 line 8a,0,0
+740 line 8b,0,0
+740 line 9a,0,0
+740 line 9b,0,0
+740 line 10a,0,0
+740 line 10b,0,0
+740 line 11b,0,0
+740 line 11a,0,0
+sch j check box ,0,0
+740 line 12b,0,0
+740 line 12a,0,0
+form 4972k check box ,0,0
+sch rcr check box ,0,0
+740 line 13a,0,0
+740 line 13b,0,0
+dsr check box ,0,0
+angel check box ,0,0
+740 line 14a,0,0
+740 line 14b,0,0
+740 line 15a,0,0
+740 line 15b,0,0
+740 line 16a,0,0
+740 line 16b,0,0
+740 line 17a,0,0
+740 line 17b,0,0
+740 line 18a,0,0
+740 line 18b,0,0
+740 line 19,0,0
+740 fs check box ,0,0
+740 line 21 fstc percentage,0,0
+740 line 21 fstc decimal,0,0
+740 line 21,0,0
+740 line 22,0,0
+740 line 23,0,0
+740 line 24,0,0
+740 line 30,0,0
+740 line 31a,0,0
+740 line 31b,0,0
+740 line 31c,0,0
+740 line 31d,0,0
+740 line 32,0,0
+740 line 33,0,0
+740 line 34a checkbox,0,0
+740 line 34a,0,0
+740 line 34b,0,0
+740 line 34c,0,0
+740 line 34d,0,0
+740 line 35,0,0
+740 line 38a,0,0
+740 line 38b,0,0
+740 line 38c,0,0
+740 line 38d,0,0
+740 line 38e,0,0
+740 line 38f,0,0
+740 line 38g,0,0
+740 line 38h,0,0
+740 line 38i,0,0
+740 line 38j,0,0
+740 line 38k,0,0
+740 line 39,0,0
+740 tp 1 sig date,0,0
+740 drivers lic - tp,1,0
+daytime phone num,1,0
+740 tp 2 sig date,0,0
+drivers lic - sp,1,0
+preparer sig date,0,0
+740 preparer id,1,0
+firm name,1,0
+discuss dor,0,0
+prep email,1,0
+preparer phone num,1,0
+enclose 1040 check box ,0,0
+31 total tax - all lines 29 and 30; if filing combined use line 30 of k-121,0,1
+list each estimated tax payment and credit forward amount claimed on this return - date 2,0,0
+list each estimated tax payment and credit forward amount claimed on this return - amount 2,0,0
+list each estimated tax payment and credit forward amount claimed on this return - date 5,0,0
+list each estimated tax payment and credit forward amount claimed on this return - amount 5,0,0
+part vi a (1) total property to be averaged - total company - end of year,0,1
+part vi a (1) total property to be averaged - total company - beginning of year,0,1
+part vi a (1) total property to be averaged - within kansas - end of year,0,1
+part vi a (1) total property to be averaged - within kansas - beginning of year,0,1
+part vi a (2) total property - total company - end of year,0,0
+part vi a (2) total property - within kansas - end of year,0,0
+part vi e average percent of either d(1) or d(2); which is applicable; enter on line 14 page 1 - percent within kansas,0,1
+in total company factors3,0,0
+within kansas factors3,0,0
+name of corporation 3,0,0
+employer ein3,0,0
+part viii employer ein 4,0,0
+part viii within kansas factors 6,0,0
+within kansas factors 7,0,0
+in total company factors 7,0,0
+name of corporation 7,0,0
+employer ein 7,0,0
+fy ending,0,0
+fy beginning,0,0
+your social security number,1,0
+spouse social security number,1,0
+your first name,1,0
+initial,1,0
+your last name,1,0
+spouses first name,1,0
+initial 2,1,0
+spouses last name,1,0
+current mailing address po box number street and apt no,1,0
+city or town,1,0
+city town or taxing area,1,0
+zip code +4,1,0
+foreign country,1,0
+foreign province,1,0
+foreign postal code,1,0
+required: 4 digit political subdivision code,1,0
+required: md poitical subdivision,1,0
+required: physical street address,1,0
+required: physical street address line 2,1,0
+required: maryland county,1,0
+required: city town,1,0
+required: zip code,1,0
+required: zip code +4,1,0
+3 married filing separately spouse ssn,1,0
+to,0,0
+from,1,0
+other state of residence (2 letter abrv),0,0
+military if you or your spouse has nonmaryland military income place an m in the box,0,0
+enter military income amount here,0,0
+exemptions a cents,0,0
+a,0,0
+exemptions a spouse,0,0
+exemptions a yourself,0,0
+exemptions a number checked,0,0
+65 or over,0,0
+65 or over 2,0,0
+exemptions b cents,0,0
+x 1000 b,0,1
+exemptions b number checked,0,0
+blind,1,0
+blind 2,1,0
+exemptions c cents,0,0
+c,0,0
+exemptions c number checked,0,0
+exemptions d number checked,0,0
+exemptions d cents,0,0
+d,0,0
+md health care coverage email date 1 af date,0,0
+md health care coverage email no health coverage,0,0
+md health care coverage email spouse no health care date 2 af date,0,0
+md health care coverage email spouse no health coverage,0,0
+md health care coverage email share info with md helath benefit exchange,0,0
+md health care coverage email,0,0
+income 1 cents,0,0
+1,0,0
+1a cents,0,0
+1a,0,0
+1b cents,0,0
+1b,0,0
+1c cents,0,0
+1c,0,0
+1d cents,0,0
+1d,0,0
+1e place a y if your investment income is more than $3;400,0,0
+additions to income 2,0,0
+additions to income 2 c,0,0
+additions to income 3,0,0
+additions to income 3 c,0,0
+additions to income 4,0,0
+additions to income 4 c,0,0
+5 other additions 1,0,0
+5 other additions 2,0,0
+5 other additions 3,0,0
+5 other additions 4,0,0
+additions to income 5,0,0
+additions to income 5 c,0,0
+additions to income 6 c,0,0
+additions to income 6,0,0
+total federal adjusted gross income and maryland additions add lines 1 and 6 7,0,1
+total federal adjusted gross income and maryland additions add lines 1 and 6 7 c,0,1
+8,0,0
+cents,0,0
+9,0,0
+9 cents,0,0
+10a yourself,0,0
+10a,0,0
+10a cents,0,0
+10a spouse,0,0
+10b yourself,0,0
+10b spouse,0,0
+10b,0,0
+10b cents,0,0
+11,0,0
+12,0,0
+12 cents,0,0
+13 subtractions from 502su 1,0,0
+13 subtractions from 502su 2,0,0
+13 subtractions from 502su 3,0,0
+13 subtractions from 502su 4,0,0
+13,0,0
+13 cents,0,0
+14,0,0
+15,0,0
+16,0,0
+deduction method,0,0
+17a,0,0
+17a cents,0,0
+17b,0,0
+17b cents,0,0
+17,0,0
+17 cents,0,0
+net income subtract line 17 from line 16 18,0,1
+net income subtract line 17 from line 16 cents,0,1
+exemption amount from exemptions area see instruction 10 19,0,0
+exemption amount from exemptions area see instruction 10 cents,0,0
+taxable net income subtract line 19 from line 18 20,0,1
+taxable net income subtract line 19 from line 18 20 cents,0,1
+21 dollar,0,0
+21 cents,0,0
+22 dollar,0,0
+22 cents,0,0
+22 check box,0,0
+23 poverty level cents,0,0
+23 dollars,0,0
+24 cents,0,0
+24,0,0
+26,0,0
+27,0,0
+27 maryland tax after credits cents,0,0
+or use the local tax worksheet 28,0,0
+or use the local tax worksheet cents,0,0
+by your local tax rate 0,0,0
+local earned income credit from local earned income credit worksheet in instruction 19 cents,0,0
+local earned income credit from local earned income credit worksheet in instruction 19 29,0,0
+local poverty level credit from local poverty level credit worksheet in instruction 19 30,0,0
+local poverty level credit from local poverty level credit worksheet in instruction 19 cents,0,0
+local tax credit from part k line 1 of form 502cr attach form 502cr 31,0,1
+local tax credit from part k line 1 of form 502cr attach form 502cr cents,0,1
+total credits add lines 29 through 31 32,0,1
+total credits add lines 29 through 31 cents,0,1
+local tax after credits subtract line 32 from line 28 if less than 0 enter 0 33,0,1
+local tax after credits subtract line 32 from line 28 if less than 0 enter 0 cents,0,1
+total maryland and local tax add lines 27 and 33 34,0,1
+total maryland and local tax add lines 27 and 33 cents,0,1
+35 cents,0,0
+35,0,0
+total maryland income tax local income tax and contributions add lines 34 through 38 39,0,1
+total maryland income tax local income tax and contributions add lines 34 through 38 cents,0,1
+40,0,0
+42,0,0
+attach form 502cr see instruction 21 43,0,0
+attach form 502cr see instruction 21 cents,0,0
+total payments and credits add lines 40 through 43 44,0,1
+total payments and credits add lines 40 through 43 cents,0,1
+45,0,0
+49 check box,0,0
+49,0,0
+interest charges from form 502up,0,0
+see instruction 22 total,0,0
+penalty,0,0
+if 1 or more pay in full with this return cents,0,0
+if 1 or more pay in full with this return 50,0,0
+place a y in this box,0,0
+direct deposit this refund,0,0
+51b routing number,0,0
+type of account,0,0
+51c account number,1,0
+51d,0,0
+code numbers 3 digits per line 3,1,0
+code numbers 3 digits per line 2,1,0
+code numbers 3 digits per line 1,1,0
+daytime telephone no,1,0
+home telephone no,1,0
+if you agree to,0,0
+if you authorize your paid preparer not to file electronically check here,0,0
+receive your 1099g income tax refund statement electronically see instruction 24,0,0
+date 2,0,0
+printed name of preparer,1,0
+street address of preparer,1,0
+telephone number of preparer,1,0
+preparers ptin required by law,1,0
+text 6,0,0
+text 8,0,0
+your social security number required,1,0
+undefined 176aaa744372aaa,0,0
+undefined 31,0,0
+last name first name initial joint filers enter first name and middle initial of each enter spouses cu partners last name only if different,1,0
+spouses cu partners ssn if filing jointly,1,0
+text 11,0,0
+text 10,0,0
+text 9,0,0
+text 13,0,0
+undefined 27,0,0
+countymunicipality code see table page 50,0,0
+cm 3,0,0
+cm 2,0,0
+cm 1,0,0
+check box 20,0,0
+check box 18,0,0
+check box 19,0,0
+2020,0,0
+text 28,0,0
+text 24,0,0
+text 25,0,0
+text 27,0,0
+group 1,0,0
+enter spouses cu partners ssn,1,0
+text 34,0,0
+text 35,0,0
+undefined 173 $%$ r67 aa12 vvff 434 te 67 aa 12 vvff 434 te,0,0
+undefined 1757172aaa,0,0
+text 32,0,0
+text 36,0,0
+group 1 qualwi 5 ab,0,0
+x 1000,0,1
+domestic,0,0
+check box 40,0,0
+check box 39,0,0
+x 1000 2,0,1
+undefined,0,0
+check box 42,0,0
+check box 41,0,0
+x 1000 3,0,1
+undefined 17268,0,0
+check box 44,0,0
+check box 43,0,0
+x 6000,0,1
+undefined 29,0,0
+check box45,0,0
+check box46,0,0
+x 1500,0,1
+x 1500 2,0,1
+undefined 64,0,0
+x 1000 4,0,1
+undefined 21,0,0
+text 53,0,0
+undefined 26,0,0
+last name first name middle initial 1,1,0
+text 54,0,0
+text 57,0,0
+text 55,0,0
+text 56,0,0
+undefined 28,0,0
+text 61,0,0
+undefined 19,0,0
+birth year,1,0
+check box 63,0,0
+last name first name middle initial 2,1,0
+text 71,0,0
+undefined 173t24wsd67aa12vvff434te,0,0
+text 65,0,0
+text 67,0,0
+text 68,0,0
+undefined 1235 ehvbncvw,0,0
+check box 74,0,0
+last name first name middle initial 3 ,1,0
+text 77,0,0
+text 80,0,0
+text 83,0,0
+undefined 17471a,0,0
+undefined 22,0,0
+text 82,0,0
+text 81,0,0
+text 76,0,0
+undefined 128,0,0
+text 78,0,0
+check box 84,0,0
+last name first name middle initial 4,1,0
+text 89,0,0
+undefined 78,0,0
+social security benefits,0,0
+add lines 1; 2b; 3b; 4b; 5b; 6b; 7; and 8,0,1
+were born before january 2; 1957 ,0,0
+charitable contributions if you take the standard deduction (see instructions),0,0
+pensions and annuities,0,0
+do you want to allow another person to discuss this return with the irs?,0,0
+spouse's signature. if a joint return; both must sign. ,1,0
+spouse's occupation,0,0
+if the irs sent you an identity protection pin; enter it here,1,0
+account number,1,0
+nontaxable combat pay election,0,0
+check here if you; or your spouse if filing jointly; want $3 to go to this fund. checking a box below will not change your tax or refund.,0,0
+home address (number and street). if you have a p.o. box see instructions.,1,0
+your first name and middle initial,1,0
+spouse's social security number,1,0
+if joint return; spouse's first name and middle initial ,1,0
+last name,1,0
+city; town; or post office. if you have a foreign address; also complete spaces below.,1,0
+apt. no.,1,0
+zip code ,1,0
+foreign country name ,1,0
+at any time during 2021; did you receive; sell; exchange; or otherwise dispose of any financial interest in any virtual currency?,0,0
+spouse itemizes on a separate return or you were a dual-status alien,0,0
+you as a dependent ,0,0
+your spouse as a dependent,0,0
+if more than four dependents; see instructions and check here,0,0
+relationship to you,0,0
+wages; salaries; tips; etc. attach form(s) w-2 ,0,0
+tax-exempt interest,0,0
+adjusted gross income,0,0
+total deductions,0,0
+taxable income,0,0
+total tax,0,0
+total payments/credits,0,0
+amount you overpaid,0,0
+amount to be refunded,0,0
+tax bracket,0,0
+wages; tips; other compensation,0,0
+federal income tax withheld,0,0
+social security wages,0,0
+social security tax withheld,0,0
+medicare wages and tips,0,0
+medicare tax withheld,0,0
+social security tips,0,0
+allocated tips,0,0
+dependent care benefits,0,0
+nonqualified plans,0,0
+see instructions for box 12,0,0
+stat emp / retire / 3rd party sick,0,0
+other,0,0
+railroad retire (rrta) compensation,0,0
+rrta medicare tax withheld (see form ct-2),0,0
+state wages; tips; etc. ,0,0
+state income tax,0,0
+local wages; tips; etc.,0,0
+local income tax,0,0
+interest income,0,0
+early withdrawal penalty,0,0
+interest on u.s. savings bonds & treas. obligations,0,0
+include line 3 on schedule b; line 1? (y / n),0,0
+investment expenses,0,0
+foreign tax paid,0,0
+foreign country or u.s. possession,0,0
+specified private activity bond interest,0,0
+market discount,0,0
+bond premium,0,0
+bond premium on treasury obligations,0,0
+bond premium on tax exempt bond,0,0
+tax-exempt and tax credit bond cusip no.,0,0
+state tax withheld,0,0
+payer's name,1,0
+payer's federal id number,1,0
+state identification no.,0,0
+total ordinary dividends,0,0
+qualified dividends,0,0
+total capital gain distr.,0,0
+unrecap. sec. 1250 gain,0,0
+section 1202 gain,0,0
+collectibles (28%) gain,0,0
+nondividend distributions,0,0
+section 199a dividends,0,0
+cash liquidation distributions,0,0
+noncash liquidation distributions,0,0
+exempt-interest dividends,0,0
+specified private activity bond interest dividends,0,0
+unemployment compensation,0,0
+state or local income tax refunds; credits; offsets,0,0
+box 2 amount is for tax year,0,0
+rtaa payments,0,0
+taxable grants,0,0
+agriculture payments - disaster payments,0,0
+agriculture payments - other payments,0,0
+check if box 2 is trade or business income,0,0
+market gain,0,0
+state income tax withheld,0,0
+payer's tin,1,0
+benefits paid in 2021,0,0
+benefits repaid in 2021,0,0
+net benefits for 2021 (box 3 minus box 4),0,1
+voluntary federal income tax withheld,0,0
+wages; salaries; tips; etc. attach form(s) w-2,0,0
+ira distributions,0,0
+capital gain or (loss). attach schedule d if required. if not required; check here,0,0
+other income from schedule 1; line 10,0,1
+add lines 1; 2b; 3b; 4b; 5b; 6b; 7; and 8. this is your total income,0,1
+adjustments to income from schedule 1; line 26,0,1
+subtract line 10 from line 9. this is your adjusted gross income,0,1
+standard deduction or itemized deductions  (from schedule a),0,1
+add lines 12a and 12b,0,1
+qualified business income deduction from form 8995 or form 8995-a,0,0
+add lines 12c and 13,0,1
+taxable income.,0,0
+tax (see instructions).,0,0
+amount from schedule 2; line 3,0,1
+add lines 16 and 17,0,1
+nonrefundable child tax credit or credit for other dependents from schedule 8812,0,1
+amount from schedule 3; line 8,0,0
+add lines 19 and 20,0,1
+subtract line 21 from line 18. if zero or less; enter -0-,0,1
+other taxes; including self-employment tax; from schedule 2; line 21,0,1
+add lines 22 and 23. this is your total tax,0,1
+federal income tax withheld from:,0,0
+form(s) w-2,0,0
+form(s) 1099,0,0
+other forms (see instructions),0,0
+add lines 25a through 25c,0,1
+2021 estimated tax payments and amount applied from 2020 return,0,0
+earned income credit (eic),0,0
+check here if you were born after january 1; 1998; and before,0,0
+january 2; 2004; and you satisfy all the other requirements for,0,0
+taxpayers who are at least age 18; to claim the eic. see instructions,0,0
+prior year (2019) earned income,0,0
+refundable child tax credit or additional child tax credit from schedule 8812,0,1
+american opportunity credit from form 8863; line 8,0,1
+recovery rebate credit. see instructions,0,0
+amount from schedule 3; line 15,0,1
+add lines 27a and 28 through 31. these are your total other payments and refundable credits,0,1
+add lines 25d; 26; and 32. these are your total payments,0,1
+if line 33 is more than line 24; subtract line 24 from line 33. this is the amount you overpaid,0,1
+amount of line 34 you want refunded to you. if form 8888 is attached; check here,0,0
+routing number,0,0
+amount  of  line 34 you want,0,0
+amount you owe. subtract line 33 from line 24. for details on how to pay; see instructions,0,1
+estimated tax penalty (see instructions),0,0
+taxable refunds; credits; or offsets of state and local income taxes,0,0
+alimony received,0,0
+date of original divorce or separation agreement (see instructions),0,0
+business income or (loss). attach schedule c,0,0
+other gains or (losses). attach form 4797,0,0
+rental real estate; royalties; partnerships; s corporations; trusts; etc. attach schedule e,0,0
+farm income or (loss). attach schedule f,0,0
+other income:,0,0
+net operating loss,0,0
+gambling income,0,0
+cancellation of debt,0,0
+foreign earned income exclusion from form 2555,0,0
+taxable health savings account distribution,0,0
+alaska permanent fund dividends,0,0
+jury duty pay,0,0
+prizes and awards,0,0
+activity not engaged in for profit income,0,0
+stock options,0,0
+income from the rental of personal property if you engaged in,0,0
+the rental for profit but were not in the business of renting such,0,0
+property,0,0
+olympic and paralympic medals and usoc prize money (see,0,0
+instructions),0,0
+section 951(a) inclusion (see instructions),0,0
+section 951a(a) inclusion (see instructions),0,0
+section 461(l) excess business loss adjustment,0,0
+taxable distributions from an able account (see instructions),0,0
+other income. list type and amount,0,0
+total other income. add lines 8a through 8z,0,1
+combine lines 1 through 7 and 9. enter here and on form 1040; 1040-sr; or,0,1
+1040-nr; line 8,0,1
+educator expenses,0,0
+certain business expenses of reservists; performing artists; and fee-basis government,0,0
+officials. attach form 2106,0,0
+health savings account deduction. attach form 8889,0,0
+moving expenses for members of the armed forces. attach form 3903,0,0
+deductible part of self-employment tax. attach schedule se,0,0
+self-employed sep; simple; and qualified plans,0,0
+self-employed health insurance deduction,0,0
+penalty on early withdrawal of savings,0,0
+alimony paid,0,0
+recipient's ssn,0,0
+ira deduction,0,0
+student loan interest deduction,0,0
+reserved for future use,0,0
+archer msa deduction,0,0
+other adjustments:,0,0
+jury duty pay (see instructions),0,0
+deductible expenses related to income reported on line 8k from,0,0
+the rental of personal property engaged in for profit,0,0
+nontaxable amount of the value of olympic and paralympic,0,0
+medals and usoc prize money reported on line 8l,0,0
+reforestation amortization and expenses,0,0
+repayment of supplemental unemployment benefits under the,0,0
+trade act of 1974,0,0
+contributions to section 501(c)(18)(d) pension plans,0,0
+contributions by certain chaplains to section 403(b) plans,0,0
+attorney fees and court costs for actions involving certain,0,0
+unlawful discrimination claims (see instructions),0,0
+attorney fees and court costs you paid in connection with an,0,0
+award from the irs for information you provided that helped the,0,0
+irs detect tax law violations,0,0
+housing deduction from form 2555,0,1
+excess deductions of section 67(e) expenses from schedule k-1 (form 1041),0,1
+other adjustments. list type and amount,0,0
+total other adjustments. add lines 24a through 24z,0,1
+add lines 11 through 23 and 25. these are your adjustments to income. enter here and on form 1040 or 1040-sr; line 10; or form 1040-nr; line 10a,0,1
+1. you received a refund in 2021 that is for a tax year other than 2020.,0,0
+2. you received a refund other than an income tax refund; such as a general sales tax or real property tax refund; in 2021 of an amount deducted or credit claimed in an earlier year.,0,0
+3. you had taxable income on your 2020 form 1040 or 1040-sr; line 15; but no tax on your form 1040 or 1040-sr; line 16; because of the 0% tax rate on net capital gain and qualified dividends in certain situations.,0,0
+4. your 2020 state and local income tax refund is more than your 2020 state and local income tax deduction minus the amount you could have deducted as your 2020 state and local general sales taxes.,0,0
+5. you made your last payment of 2020 estimated state or local income tax in 2021.,0,0
+6. you owed alternative minimum tax in 2020.,0,0
+7. you couldn't use the full amount of credits you were entitled to in 2020 because the total credits were more than the amount shown on your 2020 form 1040; line 16.,0,0
+8. you could be claimed as a dependent by someone else in 2020.,0,0
+9. you received a refund because of a jointly filed state or local income tax return; but you are not filing a joint 2021 form 1040 with the same person.,0,0
+enter the income tax refund from form(s) 1099-g (or similar statement). but don't enter more than the amount of your state and local income taxes shown on your 2020 schedule a; line 5d,0,0
+is the amount of state and local income taxes (or general sales taxes); real estate taxes; and personal property taxes paid in 2020 (generally; this is the amount reported on your 2020 schedule a; line 5d); more than the amount on your 2020 schedule a; line 5e?,0,0
+enter the amount from line 1 on line 3 and go to line 4.,0,0
+subtract the amount on your 2020 schedule a; line 5e; from the amount of state and local income taxes (or general sales taxes); real estate taxes; and personal property taxes paid in 2020 (generally; this is the amount reported on your 2020 schedule a; line 5d).,0,1
+is the amount on line 1 more than the amount on line 2?,0,1
+none of your refund is taxable.,0,0
+subtract line 2 from line 1.,0,1
+enter the amount shown below for the filing status claimed on your 2020 form 1040.,0,1
+multiply the number of boxes checked by $1;300 ($1;650 if your 2020 filing status was single or head of household).,0,1
+add lines 5 and 6,0,1
+subtract line 7 from line 4,0,1
+taxable part of your refund. enter the smaller of line 3 or line 8 here and on schedule 1; line 1.,0,1
+indicate your 2020 filing status below: check one,0,0
+single (s),0,0
+married filing jointly (mfj),0,0
+married filing separately (mfs),0,0
+head of household (hoh),0,0
+qualifying widow(er) (qw),0,0
+claimed as dependent by someone else on your 2020 tax return.,0,0
+foreign tax credit. attach form 1116; if required,0,0
+credit for child and dependent care expenses from form 2441; line 11. attach form 2441,0,1
+education credits from form 8863; line 19,0,1
+retirement savings contributions credit. attach form 8880,0,0
+residential energy credit. attach form 5695,0,0
+other nonrefundable credits:,0,0
+general business credit. attach form 3800,0,0
+credit for prior year minimum tax. attach form 8801,0,0
+adoption credit. attach form 8839,0,0
+credit for the elderly or disabled. attach schedule r,0,0
+alternative motor vehicle credit. attach form 8910,0,0
+qualified plug-in motor vehicle credit. attach form 8936,0,0
+mortgage interest credit. attach form 8396,0,0
+district of columbia first-time homebuyer credit. attach form 8859,0,0
+qualified electric vehicle credit. attach form 8834,0,0
+alternative fuel vehicle refueling property credit. attach form 8911,0,0
+credit to holders of tax credit bonds. attach form 8912,0,0
+amount on form 8978; line 14. see instructions,0,0
+other nonrefundable credits. list type and amount,0,0
+total other nonrefundable credits. add lines 6a through 6z,0,1
+add lines 1 through 5 and 7. enter here and on form 1040; 1040-sr; or 1040-nr; line 20,0,1
+net premium tax credit. attach form 8962,0,0
+amount paid with request for extension to file (see instructions),0,0
+excess social security and tier 1 rrta tax withheld,0,0
+credit for federal tax on fuels. attach form 4136,0,0
+other payments or refundable credits:,0,0
+form 2439,0,0
+qualified sick and family leave credits from schedule(s) h and,0,0
+form(s) 7202 for leave taken before april 1; 2021,0,0
+health coverage tax credit from form 8885,0,0
+credit for repayment of amounts included in income from earlier years,0,0
+deferred amount of net 965 tax liability (see instructions),0,0
+credit for child and dependent care expenses from form 2441; line 10. attach form 2441,0,0
+form(s) 7202 for leave taken after march 31; 2021,0,0
+other payments or refundable credits. list type and amount,0,0
+total other payments or refundable credits. add lines 13a through 13z,0,1
+add lines 9 through 12 and 14. enter here and on form 1040; 1040-sr; or 1040-nr; line 31,0,1
+self-employment tax. attach schedule se,0,0
+social security and medicare tax on unreported tip income.,0,0
+attach form 4137,0,0
+uncollected social security and medicare tax on wages. attach form 8919,0,0
+total additional social security and medicare tax. add lines 5 and 6,0,1
+additional tax on iras or other tax-favored accounts. attach form 5329 if required,0,0
+household employment taxes. attach schedule h,0,0
+repayment of first-time homebuyer credit. attach form 5405 if required,0,0
+additional medicare tax. attach form 8959,0,0
+net investment income tax. attach form 8960,0,0
+uncollected social security and medicare tax on tips or group-term life,0,0
+insurance from form w-2; box 12,0,1
+interest on tax due on installment income from the sale of certain residential lots and timeshares,0,0
+interest on the deferred tax on gain from certain installment sales with a sales price over $150;000,0,0
+recapture of low-income housing credit. attach form 8611,0,0
+other additional taxes:,0,0
+recapture of other credits. list type; form number; and amount,0,0
+recapture of federal mortgage subsidy. if you sold your home in 2021; see instructions,0,0
+additional tax on hsa distributions.  attach form 8889,0,0
+additional tax on an hsa because you didn't remain an eligible individual. attach form 8889,0,0
+additional tax on archer msa distributions. attach form 8853,0,0
+additional tax on medicare advantage msa distributions. attach form 8853,0,0
+recapture of a charitable contribution deduction related to a fractional interest in tangible personal property,0,0
+income you received from a nonqualified deferred compensation plan that fails to meet the requirements of section 409a,0,0
+compensation you received from a nonqualified deferred compensation plan described in section 457a,0,0
+section 72(m)(5) excess benefits tax,0,0
+golden parachute payments,0,0
+tax on accumulation distribution of trusts,0,0
+excise tax on insider stock compensation from an expatriated corporation,0,0
+look-back interest under section 167(g) or 460(b) from form 8697 or 8866,0,0
+tax on non-effectively connected income for any part of the year you were a nonresident alien from form 1040-nr,0,0
+any interest from form 8621; line 16f; relating to distributions from; and dispositions of; stock of a section 1291 fund,0,0
+any interest from form 8621; line 24,0,1
+any other taxes. list type and amount,0,0
+total additional taxes. add lines 17a through 17z,0,1
+additional tax from schedule 8812,0,1
+section 965 net tax liability installment from form 965-a,0,0
+add lines 4; 7 through 16; 18; and 19. these are your total other taxes. enter here and on form 1040 or 1040-sr; line 23; or form 1040-nr; line 23b,0,1
+you were 65 or older,0,0
+you were under 65 and you retired on permanent and total disability,1,0
+both spouses were 65 or older,0,0
+both spouses were under 65; but only one spouse retired on permanent and total disability,1,0
+both spouses were under 65; and both retired on permanent and total disability,1,0
+one spouse was 65 or older; and the other spouse was under 65 and retired on permanent and total disability,1,0
+one spouse was 65 or older; and the other spouse was under 65 and not retired on permanent and total disability,1,0
+you were 65 or older and you lived apart from your spouse for all of 2021,0,0
+you were under 65; you retired on permanent and total disability; and you lived apart from your spouse for all of 2021,1,0
+you filed a physician's statement for this disability for 1983 or an earlier year; or you filed or got a statement for tax years after 1983 and your physician signed line b on the statement; and,1,0
+due to your continued disabled condition; you were unable to engage in any substantial gainful activity in 2021; check this box,1,0
+nontaxable part of social security benefits and nontaxable part of railroad retirement benefits treated as social security (see instructions),0,0
+nontaxable veteran pensions and any other pension; annuity; or disability benefit that is excluded from income under any other provision of law (see instructions),1,0
+add lines 13a and 13b. (even though these income items aren't taxable; they must be included here to figure your credit.) if you didn't receive any of the types of nontaxable income listed on line 13a or 13b; enter -0- on line 13c,0,0
+enter one-half of line 16,0,1
+multiply line 19 by 15% (0.15),0,1
+credit for the elderly or the disabled. enter the smaller of line 20 or line 21. also enter this amount on schedule 3 (form 1040); line 6d,0,1
