@@ -56,11 +56,12 @@ class GenRandPeriods():
                  outcomes_col: str = None,
                  export_csv: bool = False, 
                  debug: bool = False, 
+                 seed=None,
                  **args
                 ):
 
         self.yml = yml
-        self.rng = rng
+        self.rng = (rng if rng is not None else np.random.default_rng(seed=seed))
         self.last_date = pd.Timestamp(last_date)
         self.max_nperiods_back = max_nperiods_back
         self.freq = freq
@@ -262,16 +263,18 @@ class GenRandomProportions():
                  features_p: Dict = None, 
                  distribution: Dict = None, parameters: Dict = None,
                  n: int = 40, normalized: bool = True,
-                 export_csv: bool = False, debug: bool = False, include_agg: bool = True,
+                 export_csv: bool = False, debug: bool = False, 
+                 include_agg: bool = True,
                  # always_non_neg=None,
-                 global_always_non_neg: bool = True):
+                 global_always_non_neg: bool = True,
+                 seed: int = None,
+                 **kwargs):
 
         self.yml = yml
-        self.rng = rng
+        self.rng = (rng if rng is not None else np.random.default_rng(seed=seed))
         self.features_p = features_p
         self.distribution = distribution
         self.parameters = parameters
-
         self.n = n
         self.normalized = normalized
         self.export_csv = export_csv
@@ -372,17 +375,17 @@ class GenMoneyTS():
                  distribution: str = None, parameters: Dict = None,
                  n: int = 40,
                  export_csv: bool = False, debug: bool = False,
-                 always_non_neg: bool = True, seed=None):
+                 always_non_neg: bool = True, 
+                 seed: int = None):
 
         self.distribution = distribution
         self.parameters = parameters
         self.n = n
-        self.rng = rng
+        self.rng = (rng if rng is not None else np.random.default_rng(seed=seed))
         self.export_csv = export_csv
         self.debug = debug
         self.always_non_neg = always_non_neg
         self.yml = yml
-        self.seed=(np.random.randint(0,np.iinfo(np.int32).max) if seed is None else seed)
 
     def get_yml(self):
         # get the config data
@@ -408,8 +411,8 @@ class GenMoneyTS():
         X_ignore, random_ts = make_regression(n_samples=self.n, n_features=3,
                        n_targets=1,
                        bias=bias,
-                       noise=bias/100,
-                       random_state=self.seed,
+                       noise=bias/1,
+                       random_state=self.rng.integers(low=1, high=2**32-2),
                        tail_strength=0.5
                       ) 
         if self.always_non_neg:
@@ -466,9 +469,10 @@ class ObjectGenerator(object):
                  debug: bool = False, 
                  include_agg: bool = True, 
                  export_csv: bool = False,
+                 seed: int = None,
                  **kargs):
         self.yml = yml
-        self.rng=rng
+        self.rng = (rng if rng is not None else np.random.default_rng(seed=seed))
         self.class_name = class_name
         self.debug = debug
         self.export_csv = export_csv
@@ -498,9 +502,10 @@ class GenTSRecord():
                  rng: np.random._generator.Generator = None, 
                  debug: bool = False, 
                  raw_ts_objects=None,
-                **kargs):
+                 seed=None,
+                **kwargs):
         self.yml = yml
-        self.rng = rng
+        self.rng = (rng if rng is not None else np.random.default_rng(seed=seed))
         self.debug = debug
         self.raw_ts_objects = raw_ts_objects
 
@@ -685,9 +690,12 @@ class GenTSDataset():
     def __init__(self, yml: Dict, 
                  rng: np.random._generator.Generator = None, 
                  n_samples: int = 50,
-                 debug: bool = False, export_csv: bool = True, **kargs):
+                 debug: bool = False, 
+                 export_csv: bool = True, 
+                 seed: int =None, 
+                 **kargs):
         self.n_samples = n_samples
-        self.rng = rng
+        self.rng = (rng if rng is not None else np.random.default_rng(seed=seed))
         self.debug = debug
         self.export_csv = export_csv
         self.yml = yml

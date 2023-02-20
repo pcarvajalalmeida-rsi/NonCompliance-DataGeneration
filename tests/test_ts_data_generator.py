@@ -282,6 +282,9 @@ def test_normalize_rows():
 ####################################################
 
 def test_GenMoneyTS():
+    seed = 1
+    rng = np.random.default_rng(seed=seed)
+    
     income = GenMoneyTS(yml['income'], rng=rng)
     income.get_yml()
     income_df = income.get_sample()
@@ -292,7 +295,7 @@ def test_GenMoneyTS():
     assert income_df.select_dtypes(include=[
                                    float]).shape == income_df.shape, "DataFrame contains non-float values. Since this is money, it must be float due to cents."
     assert_frame_equal(round(
-        income_df), income_df), "Numbers are not rounded to 2 decimals. It must since thisin money."
+        income_df,2), income_df), "Numbers are not rounded to 2 decimals. It must since thisin money."
 
 
 ######################################################################
@@ -302,6 +305,9 @@ def test_GenMoneyTS():
 def test_ObjectGenerator():
     # Will test the object generation by generating a distribution of deductions.
     # Dataframe was created
+    seed = 1
+    rng = np.random.default_rng(seed=seed)
+    
     deducs = ObjectGenerator(yml=yml.get('deducs'),
                              rng=rng,
                              class_name='GenRandomProportions',
@@ -322,7 +328,7 @@ def test_ObjectGenerator():
 
 def test_GenTSRecord():
 
-    record_gen = GenTSRecord(yml, rng=rng)
+    record_gen = GenTSRecord(yml)
     record_df = record_gen.get_record()
     assert isinstance(
         record_df, pd.DataFrame), f"Expected pd.DataFrame, but got {type(record_df)}"
@@ -409,6 +415,9 @@ def test_transform_objects():
 ######################################################################
 
 def test_GenTSDataset():
+    seed = 1
+    rng = np.random.default_rng(seed=seed)
+    
     dataset_df = GenTSDataset(yml=yml, rng=rng, n_samples=5,
                               export_csv=True).get_dataset()
 
